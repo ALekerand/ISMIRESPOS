@@ -52,7 +52,7 @@ public class EtatDemandeController {
 
 	public void enregistrer() {
 		this.service.addObject(this.etatDemande);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement ï¿½ffectuï¿½ avec succï¿½s!");
 		this.annuler();
 		this.genererCodeEtatDemande();
 	}
@@ -84,9 +84,9 @@ public class EtatDemandeController {
 	public void modifier() {
 		this.service.updateObject(this.etatDemande);
 		this.annuler();
-		this.info("Modification effectué avec succés!");
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuï¿½e!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {

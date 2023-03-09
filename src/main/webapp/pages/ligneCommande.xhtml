@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/templates/template.xhtml">
+			<ui:define name="body">
+				<h:form id="form">
+				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
+		<fieldset>
+ 	<legend>ENREGISTREMENT DES BON DE COMMANDE </legend>		
+<h:panelGrid columns="6" cellpadding="10">
+	<p:outputLabel for="input_code" value="Code"></p:outputLabel>
+	<p:inputText id="input_code" value="#{ligneCommandeController.ligneCommande.codeLigneCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+
+<p:outputLabel for="input_lib" value="Quantite"></p:outputLabel>
+	<p:inputText id="input_lib" value="#{ligneCommandeController.ligneCommande. qteLigneCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
+</h:panelGrid>
+
+</fieldset>
+<br/>
+<p:toolbar >
+			<f:facet name="left">
+				<p:commandButton value="Enregistrer" action="#{bonCommandeController.enregistrer}" update="form" binding="#{fonctionController.btnEnregistrer}"></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{bonCommandeController.annuler}" process="@this" update="form" binding="#{fonctionController.btnAnnuler}"></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{bonCommandeController.modifier}" update="form" binding="#{fonctionController.btnModifier}"></p:commandButton>
+			</f:facet>
+		</p:toolbar>
+		<br/>
+		
+	<p:dataTable  var="var" value="#{bonCommandeController.listBonCommande}"  selectionMode="single" selection="#{bonCommandeController.selectedObject}" rowKey="#{var. idBonCommande}">
+ 
+ <f:facet name="header"> LISTE DES BON DE COMMANDE </f:facet>
+     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{bonCommandeController.selectionnerLigne}"></p:ajax>
+   		
+   		<p:column headerText="Code" style="width:30%">
+        <h:outputText value="#{var.codeBonCommande}"/>
+        </p:column>
+        
+        <p:column headerText="Commentaire">
+        <h:outputText value="#{var.commentaireBonCommande}"/>
+        </p:column>
+        
+         
+        <p:column headerText="Date">
+        <h:outputText value="#{var.date}"/>
+        </p:column>
+        </p:dataTable>
+				
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</body> 
+</html>

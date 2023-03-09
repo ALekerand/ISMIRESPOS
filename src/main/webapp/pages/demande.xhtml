@@ -45,7 +45,7 @@
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{demandeController.selectionnerLigne}"></p:ajax>
    		
    		<p:column headerText="Demandeur">
-        <h:outputText value="#{var.demande.entite.id}"/>
+        <h:outputText value="#{var.entite.personne.nomPersonne} "/>
         </p:column>
    		
    		<p:column headerText="Code" style="width:30%">
@@ -53,7 +53,7 @@
         </p:column>
         
         <p:column headerText="Materiel">
-        <h:outputText value="#{var.demande.materiel}"/>
+        <h:outputText value="#{var.materiel.nomMateriel}"/>
         </p:column>
         
         <p:column headerText="Quantité">
@@ -61,7 +61,7 @@
         </p:column>
         
         <p:column headerText="Motif">
-        <h:outputText value="#{var.motifDeamande}"/>
+        <h:outputText value="#{var.motifDemande}"/>
         </p:column>
         
         <p:column headerText="Etat">

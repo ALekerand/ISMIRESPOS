@@ -38,11 +38,11 @@ public class FonctionController {
 
 	public void enregistrer() {
 		this.service.addObject(this.fonction);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succï¿½s!");
 		this.annuler();
 		
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetué!", null));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetuï¿½!", null));
 	}
 
 	public void selectionnerLigne() {
@@ -71,9 +71,9 @@ public class FonctionController {
 	public void modifier() {
 		this.service.updateObject(this.fonction);
 		this.annuler();
-		this.info("Modification effectué avec succés!");
+		this.info("Modification effectuï¿½ avec succï¿½s!");
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuï¿½e!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 18 mai 2022 ï¿½ 07:58:28 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -63,7 +63,7 @@ public class Boncommande implements java.io.Serializable {
 		this.idBonCommande = idBonCommande;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;

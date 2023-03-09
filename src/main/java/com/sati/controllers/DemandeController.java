@@ -71,12 +71,15 @@ public class DemandeController {
 	public void enregistrer() {
 		Personne personne = new Personne();
 		Entite entite = new Entite();
+		Materiel materiel = new Materiel();
 		personne = userAuthentication.getPersonne();
 		entite = (Entite) service.getObjectById(personne.getIdEntite(), "Entite");
+		materiel = (Materiel) service.getObjectById(idMatereiel, "Materiel");
 		
-		//Charger les éléments de la demande
+		//Charger les ï¿½lï¿½ments de la demande
+				
 		this.demande.setEntite(entite);
-		this.demande.setMateriel((Materiel) service.getObjectById(idMatereiel, "Materiel"));
+		this.demande.setMateriel(materiel);
 		this.demande.setEtatDemande(null);
 		this.demande.setDateDemande(new Date());
 		
@@ -154,8 +157,11 @@ public class DemandeController {
 		this.idMatereiel = idMatereiel;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Demande> getListTable() {
-		return listTable = service.getObjects("Demande");
+		listTable = service.getObjects("Demande");
+		System.out.println("========Taille de la liste es:"+listTable.size());
+		return listTable;
 	}
 
 	public void setListTable(List<Demande> listTable) {

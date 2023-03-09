@@ -22,7 +22,7 @@ public class EtatController {
 	@Autowired
 	Iservice service;
 	private Etat etat = new Etat();
-	private List<Etat> listFamille = new ArrayList<Etat>();
+	private List<Etat> listEtat = new ArrayList<Etat>();
 	private Etat selectedObject = new Etat();
 	
 	private CommandButton btnEnregistrer = new CommandButton();
@@ -36,11 +36,11 @@ public class EtatController {
 
 	public void enregistrer() {
 		this.service.addObject(this.etat);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succï¿½s!");
 		this.annuler();
 		
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetué!", null));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetuï¿½!", null));
 	}
 
 	public void selectionnerLigne() {
@@ -69,9 +69,9 @@ public class EtatController {
 	public void modifier() {
 		this.service.updateObject(this.etat);
 		this.annuler();
-		this.info("Modification effectué avec succés!");
+		this.info("Modification effectuÃ©e avec succÃ¨s!");
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuï¿½e!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -107,12 +107,14 @@ public class EtatController {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Etat> getListFamille() {
-		return listFamille = service.getObjects("Etat");
+	public List<Etat> getListEtat() {
+		 listEtat = service.getObjects("Etat");
+		 System.out.println("========Taille de la liste:"+listEtat.size());
+		return listEtat;
 	}
 
-	public void setListFamille(List<Etat> listFamille) {
-		this.listFamille = listFamille;
+	public void setListEtat(List<Etat> listEtat) {
+		this.listEtat = listEtat;
 	}
 
 	public Etat getSelectedObject() {

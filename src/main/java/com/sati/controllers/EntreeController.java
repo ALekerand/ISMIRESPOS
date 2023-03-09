@@ -30,7 +30,7 @@ public class EntreeController {
 	RequeteUtilisateur requeteUtilisateur;
 	private Entree entree = new Entree();
 	private Materiel  materiel ;//= new Materiel();
-	UserAuthentication userAuthentication = new UserAuthentication();
+	private UserAuthentication userAuthentication = new UserAuthentication();
 	private List<Fournisseur> listFournisseur = new ArrayList<Fournisseur>();
 	private int idFournisseur;
 	private List<Materiel> listMateriel = new ArrayList<Materiel>();
@@ -85,8 +85,8 @@ public class EntreeController {
 		this.materiel.setStockActuel(this.materiel.getStockActuel()+ this.entree.getQteEntree());
 		service.updateObject(materiel);
 		
-		//Actualiser le stock du materiel concerné
-		this.info("Eneregistrement éffectué avec succès!");
+		//Actualiser le stock du materiel concernï¿½
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
 	}
 	
@@ -159,15 +159,20 @@ public class EntreeController {
 
 	@SuppressWarnings("unchecked")
 	public List<Fournisseur> getListFournisseur() {
-		return listFournisseur = service.getObjects("Fournisseur");
+		 listFournisseur = service.getObjects("Fournisseur");
+		 System.out.println("========Taille de la liste:"+listFournisseur.size());
+		 return listFournisseur;
 	}
 
 	public void setListFournisseur(List<Fournisseur> listFournisseur) {
 		this.listFournisseur = listFournisseur;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Materiel> getListMateriel() {
-		return listMateriel = service.getObjects("Materiel");
+		 listMateriel = service.getObjects("Materiel");
+		 System.out.println("=========Taille de la liste:"+listMateriel);
+		 return listMateriel;
 	}
 
 	public void setListMateriel(List<Materiel> listMateriel) {
@@ -188,8 +193,11 @@ public class EntreeController {
 		this.idSource = idSource;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SourceFinancement> getListSourceFinance() {
-		return listSourceFinance = service.getObjects("SourceFinancement");
+		 listSourceFinance = service.getObjects("SourceFinancement");
+		 System.out.println("========Taille de la liste:"+listSourceFinance.size());
+		 return listSourceFinance;
 	}
 
 	public void setListSourceFinance(List<SourceFinancement> listSourceFinance) {
@@ -212,8 +220,11 @@ public class EntreeController {
 		this.materiel = materiel;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Entree> getListEntree() {
-		return listEntree = service.getObjects("Entree");
+		 listEntree = service.getObjects("Entree");
+		 System.out.println("========Taille de la liste:"+listEntree.size());
+		 return listEntree;
 	}
 
 	public void setListEntree(List<Entree> listEntree) {
