@@ -7,116 +7,77 @@
 
 <h:head></h:head> 
 <body> 
-<!-- 
-		Replace path to template, title, header and body
-		with actual data.
-	 -->
-	<ui:composition template="/templates/template.xhtml">
+
+		<ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
-				<h:form id="form">
-				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
-				<fieldset>
-<div style="font-size: 15px ; padding-top: 40px; padding-left: 10px; padding-right: -10px">
-	<p:outputLabel for="input_qte" value="Quantite"></p:outputLabel>
-	<p:inputText id="input_qte" value="#{bonCommandeController.qteLigneCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
-  </div>
-
-<div style="font-size: 15px ; padding-top: 40px; padding-left: 10px; padding-right: 50%">
-<p:dataTable id="radioDT" var="var" value="#{bonCommandeController.listMateriel}" selection="#{bonCommandeController.selectedMateriel}" selectionMode="single" rowKey="#{var.idMateriel}">
- 
- <f:facet name="header"> LISTE DES MATERIAUX </f:facet>
-     
-   		<p:column headerText="Materiel" style="width:15%">
-        <h:outputText value="#{var.nomMateriel}"/>
-        </p:column>
-        
-        <p:column headerText="Code" style="width:5%">
-        <h:outputText value="#{var.codeMateriel}"/>
-        </p:column>
-         
-        <p:column headerText="Stock Actuel" style="width:10%">
-        <h:outputText value="#{var.stockActuel}"/>
-        </p:column>
-      
-        </p:dataTable>
-         </div>
-
-<br/>
-		   		  <p:toolbar>
-	                   <f:facet name="left">
-	                      <p:commandButton  value="+" actionListener="#{bonCommandeController.ajouter}" update=":form:radioDT"></p:commandButton>
-
-	                      <p:commandButton value="-" ></p:commandButton>  
-	                       <p:commandButton  value="Annuler"></p:commandButton> 
-	                   </f:facet>
-	             </p:toolbar>
-<p:dataTable  var="var" value="#{bonCommandeController.listLigneCommande}" >
- 
- <f:facet name="header"> LISTE DES MATERIAUX </f:facet>
-     
-   		<p:column headerText="Materiel" style="width:15%">
-        <h:outputText value="#{var.materiel.nomMateriel}"/>
-        </p:column>
-        
-        <p:column headerText="Code" style="width:5%">
-        <h:outputText value="#{var.materiel.codeMateriel}"/>
-        </p:column>
-         
-        <p:column headerText="Stock Actuel" style="width:10%">
-        <h:outputText value="#{var.materiel.stockActuel}"/>
-        </p:column>
-         <p:column headerText="Quantite" style="width:10%">
-        <h:outputText value="#{var.qteLigneCommande}"/>
-        </p:column>
-      
-        </p:dataTable>
-	             <br />
-</fieldset>
-		<fieldset>
- 	<legend>ENREGISTREMENT DES BON DE COMMANDE </legend>		
-<h:panelGrid columns="6" cellpadding="10">
-	<p:outputLabel for="input_code" value="Code"></p:outputLabel>
-	<p:inputText id="input_code" value="#{bonCommandeController.bonCommande.codeBonCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
-
-<p:outputLabel for="input_lib" value="Commentaire"></p:outputLabel>
-	<p:inputTextarea id="input_lib" value="#{bonCommandeController.bonCommande.commentaireBonCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputTextarea>	
-</h:panelGrid>
-
-
-</fieldset>
-<br/>
-<p:toolbar >
-			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{bonCommandeController.enregistrer}" update="form" binding="#{fonctionController.btnEnregistrer}"></p:commandButton>
-				<p:commandButton value="Annuler"  action="#{bonCommandeController.annuler}" process="@this" update="form" binding="#{fonctionController.btnAnnuler}"></p:commandButton>
-				<p:commandButton value="Modifier"  action="#{bonCommandeController.modifier}" update="form" binding="#{fonctionController.btnModifier}"></p:commandButton>
-			</f:facet>
-		</p:toolbar>
-		<br/>
-		
-	<p:dataTable  var="var" value="#{bonCommandeController.listBonCommande}"  selectionMode="single" selection="#{bonCommandeController.selectedObject}" rowKey="#{var. idBonCommande}">
- 
- <f:facet name="header"> LISTE DES BON DE COMMANDE </f:facet>
-     <p:ajax event="rowSelect" process="@this"  update="form" listener="#{bonCommandeController.selectionnerLigne}"></p:ajax>
-   		
-   		<p:column headerText="Code" style="width:30%">
-        <h:outputText value="#{var.codeBonCommande}"/>
-        </p:column>
-        
-        <p:column headerText="Commentaire">
-        <h:outputText value="#{var.commentaireBonCommande}"/>
-        </p:column>
-        
-         
-        <p:column headerText="Date">
-        <h:outputText value="#{var.date}"/>
-        </p:column>
-        </p:dataTable>
+			<h:form id="form">
+			<fieldset>
+			
+			<h:panelGrid columns="6" cellpadding="2" >
+			<p:outputLabel value="Quantite"></p:outputLabel>
+			<p:inputText value="#{bonCommandeController.qteLigneCommande}"></p:inputText>
+			</h:panelGrid>
+			<br />
+			
+			<p:dataTable var="variable" value="#{bonCommandeController.listMateriel}" selectionMode="Single" selection="#{bonCommandeController.selectedObject}" rowKey="#{variable.idMateriel}">
+			<p:ajax event="rowSelect" listener="#{bonCommandeController.choisirLigne}" update="form"></p:ajax>
+			
+			
+			<p:column headerText="Materiel">
+			<h:outputText value="#{variable.nomMateriel}" />
+			</p:column>
+			
+			<p:column headerText="Code">
+			<h:outputText value="#{variable.codeMateriel}" />
+			</p:column>
+			
+			<p:column headerText="StockActuel">
+			<h:outputText value="#{variable.stockActuel}" />
+			</p:column>
+			
+			</p:dataTable>
+			<br />
+			<p:toolbar >
+				<f:facet name="left">
+					<p:commandButton value="Ajouter" action="#{bonCommandeController.ajouter}" update="form"></p:commandButton>
+				</f:facet>
+			</p:toolbar>
+			</fieldset>
+			
+			<p:dataTable var="variable" value="#{bonCommandeController.listObject}" >
+			
+			<p:column headerText="Materiel">
+			<h:outputText value="#{variable.materiel.nomMateriel}" />
+			</p:column>
+			
+			<p:column headerText="Code">
+			<h:outputText value="#{variable.materiel.codeMateriel}" />
+			</p:column>
+			
+			<p:column headerText="StockActuel">
+			<h:outputText value="#{variable.materiel.stockActuel}" />
+			</p:column>
+			
+			<p:column headerText="Quantite">
+			<h:outputText value="#{variable.qteLigneCommande}" />
+			</p:column>
+			
+			</p:dataTable>
+			
+			<br/>
+	<!--  		<fieldset>
+			
 				
-				</h:form>
-			</ui:define>
+			
+				<h:panelGrid columns="6" cellpadding="2" >
+			<p:outputLabel value="Commantaire"></p:outputLabel>
+			<p:inputText value="#{bonCommandeController.qteLigneCommande}"></p:inputText>
+			</h:panelGrid>
+			</fieldset>
+			-->
+			</h:form>
+		    </ui:define>
 	</ui:composition>
-
 
 </body> 
 </html>
