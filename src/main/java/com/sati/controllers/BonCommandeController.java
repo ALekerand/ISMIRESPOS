@@ -1,15 +1,21 @@
 package com.sati.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
+import com.sati.model.Boncommande;
 import com.sati.model.LigneCommande;
 import com.sati.model.Materiel;
+import com.sati.model.UserAuthentication;
+import com.sati.requetes.RequeteUtilisateur;
 import com.sati.service.Iservice;
 
 @Component
@@ -18,15 +24,31 @@ public class BonCommandeController {
 	
 	@Autowired
 	Iservice service;
+	@Autowired
+	RequeteUtilisateur requeteUtilisateur;
 	private LigneCommande ligneCommande = new LigneCommande();
 	private List<LigneCommande> listObject = new ArrayList<LigneCommande>();
 	private Materiel materiel = new Materiel();
 	private List<Materiel> listMateriel = new ArrayList<Materiel>();
+	private List<LigneCommande> listLigneCommande = new ArrayList<LigneCommande>();
 	private Materiel selectedObject;
 	private Integer qteLigneCommande;
 	private int idMateriel;
+	private Boncommande bonCommande = new Boncommande();
+	private List<Boncommande> listBonCommande = new ArrayList<Boncommande>();
+	private UserAuthentication userAuthentication = new UserAuthentication();
 	
 	
+	private CommandButton btnEnregistrer = new CommandButton();
+	private CommandButton btnModifier = new CommandButton();
+	private CommandButton btnAnnuler = new CommandButton();
+	
+	
+	@PostConstruct
+	public void initialiser() {
+		btnModifier.setDisabled(true);
+		chagerUtilisateur();
+	}
 	
 	public void ajouter() {
 		System.out.println("=========Lancement de la methode============");
@@ -36,6 +58,64 @@ public class BonCommandeController {
 		listObject.add(ligneCommande);
 	}
 	
+	public UserAuthentication chagerUtilisateur() {
+		return userAuthentication = requeteUtilisateur.recuperUser();
+	}
+	
+	public String genererCodeBoncommande() {
+		String prefix="";
+		int nbEnregistrement = this.service.getObjects("Boncommande").size();
+		if(nbEnregistrement < 10)
+			prefix = "CBC00" ;
+		if ((nbEnregistrement >= 10) && (nbEnregistrement < 100)) 
+			prefix = "CBC0" ;
+		if (nbEnregistrement > 100) 
+			prefix = "CBC" ;
+		return new String(prefix+(nbEnregistrement+1));
+	}
+	
+	public String genererCodeLgneCommande() {
+		String prefix="";
+		int nbEnregistrement = this.service.getObjects("LigneCommande").size();
+		if(nbEnregistrement < 10)
+			prefix = "CLC00" ;
+		if ((nbEnregistrement >= 10) && (nbEnregistrement < 100)) 
+			prefix = "CLC0" ;
+		if (nbEnregistrement > 100) 
+			prefix = "CBC" ;
+		return new String(prefix+(nbEnregistrement+1));
+	}
+	
+	public void enregistrer() {
+		bonCommande.setCodeBonCommande(genererCodeBoncommande());
+		bonCommande.setCommentaireBonCommande(null);
+		bonCommande.setDate(new Date());
+		bonCommande.setPersonne(userAuthentication.getPersonne());
+		service.addObject(bonCommande);
+		for (LigneCommande objetLigneCommande:listObject) {
+			System.out.println("=============Quantité:"+objetLigneCommande.getQteLigneCommande());
+			System.out.println("=============Materiel:"+objetLigneCommande.getMateriel());
+			
+			objetLigneCommande.setBoncommande(bonCommande);
+			objetLigneCommande.setCodeLigneCommande(genererCodeLgneCommande());
+			service.addObject(objetLigneCommande);
+		}
+		
+		annuler();
+		
+	}
+	
+	public void modifier() {
+		service.updateObject(ligneCommande);
+		
+		annuler();
+	}
+	
+	public void annuler() {
+		bonCommande.setCommentaireBonCommande(null);
+		
+		
+	}
 	public void choisirLigne() {
 	this.materiel = this.selectedObject;
 	}
@@ -88,6 +168,65 @@ public class BonCommandeController {
 
 	public void setIdMateriel(int idMateriel) {
 		this.idMateriel = idMateriel;
+	}
+
+	public Boncommande getBonCommande() {
+		return bonCommande;
+	}
+
+	public void setBonCommande(Boncommande bonCommande) {
+		this.bonCommande = bonCommande;
+	}
+
+	public List<Boncommande> getListBonCommande() {
+		return listBonCommande;
+	}
+
+	public void setListBonCommande(List<Boncommande> listBonCommande) {
+		this.listBonCommande = listBonCommande;
+	}
+
+	public CommandButton getBtnEnregistrer() {
+		return btnEnregistrer;
+	}
+
+	public void setBtnEnregistrer(CommandButton btnEnregistrer) {
+		this.btnEnregistrer = btnEnregistrer;
+	}
+
+	public CommandButton getBtnModifier() {
+		return btnModifier;
+	}
+
+	public void setBtnModifier(CommandButton btnModifier) {
+		this.btnModifier = btnModifier;
+	}
+
+	public CommandButton getBtnAnnuler() {
+		return btnAnnuler;
+	}
+
+	public void setBtnAnnuler(CommandButton btnAnnuler) {
+		this.btnAnnuler = btnAnnuler;
+	}
+
+	public UserAuthentication getUserAuthentication() {
+		return userAuthentication;
+	}
+
+	public void setUserAuthentication(UserAuthentication userAuthentication) {
+		this.userAuthentication = userAuthentication;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<LigneCommande> getListLigneCommande() {
+		listLigneCommande = service.getObjects("LigneCommande");
+		System.out.println("===========Taille de la liste:"+listLigneCommande.size());
+		return listLigneCommande;
+	}
+
+	public void setListLigneCommande(List<LigneCommande> listLigneCommande) {
+		this.listLigneCommande = listLigneCommande;
 	}
 
 

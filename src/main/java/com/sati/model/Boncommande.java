@@ -92,7 +92,7 @@ public class Boncommande implements java.io.Serializable {
 		this.date = date;
 	}
 
-	@Column(name = "COMMENTAIRE_BON_COMMANDE", length = 65535)
+	@Column(name = "COMMENTAIRE_BON_COMMANDE", length = 500)
 	public String getCommentaireBonCommande() {
 		return this.commentaireBonCommande;
 	}
