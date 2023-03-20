@@ -56,8 +56,12 @@ public class BonCommandeController {
 		ligneCommande.setQteLigneCommande(qteLigneCommande);
 		ligneCommande.setMateriel(selectedObject);
 		listObject.add(ligneCommande);
+		annulerLigneCommande();
 	}
 	
+	public void annulerLigneCommande() {
+		setQteLigneCommande(null);
+	}
 	public UserAuthentication chagerUtilisateur() {
 		return userAuthentication = requeteUtilisateur.recuperUser();
 	}
@@ -113,6 +117,7 @@ public class BonCommandeController {
 	
 	public void annuler() {
 		bonCommande.setCommentaireBonCommande(null);
+		ligneCommande.setQteLigneCommande(null);
 		
 		
 	}
