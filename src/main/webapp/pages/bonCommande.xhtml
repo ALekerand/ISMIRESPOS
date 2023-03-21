@@ -11,12 +11,11 @@
 		<ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
 			<h:form id="form">
-			<fieldset>
-			<legend>Ligne de commande</legend>
-	<h:panelGrid columns="7" cellpadding="2" >
-			
-			<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 100%">
-			
+			<p:messages autoUpdate="true" closable="true" showDetail="false"/>
+			<table style="width: 100%" cellspacing="0" cellpadding="6">
+			<tr>
+			<td style="width: 50%">
+		
 			<p:dataTable id="materiel" var="variable" value="#{bonCommandeController.listMateriel}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}" selectionMode="single"  selection="#{bonCommandeController.selectedObject}" rowKey="#{variable.idMateriel}">
 			<f:facet name="header">LISTES DES MATERIELS</f:facet>
 			<p:ajax event="rowSelect" listener="#{bonCommandeController.choisirLigne}" update="form"></p:ajax>
@@ -30,23 +29,28 @@
 			</p:column>
 			
 			</p:dataTable>
-					<br />
-			<p:outputLabel value="Code"></p:outputLabel>
+			
+			</td>
+			<td>
+					
+			<h:panelGrid columns="2" cellpadding="20" >
+			<p:outputLabel value="Code :"></p:outputLabel>
 			<p:inputText value="#{bonCommandeController.materiel.codeMateriel}" readonly="true"></p:inputText>
 			
-			<p:outputLabel value="Designation"></p:outputLabel>
+			<p:outputLabel value="Designation :"></p:outputLabel>
 			<p:inputText value="#{bonCommandeController.materiel.nomMateriel}" readonly="true"></p:inputText>
 	
-			<p:outputLabel value="Quantite"></p:outputLabel>
-			<p:inputText value="#{bonCommandeController.qteLigneCommande}"></p:inputText>
+			<p:outputLabel value="Quantite :"></p:outputLabel>
+			<p:inputText value="#{bonCommandeController.qteLigneCommande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
 	
-	
-			</div>
+			
 			</h:panelGrid>
-			<br />
+			</td>
+			</tr>
+		</table>
 			<p:toolbar >
 				<f:facet name="left">
-					<p:commandButton value="Ajouter" action="#{bonCommandeController.ajouter}" update="form"></p:commandButton>
+					<p:commandButton  binding="#{bonCommandeController.btnAjouter}" value="Ajouter" action="#{bonCommandeController.ajouter}" update="form" ><p:confirm header="confirmation" message="voulez-vous l'ajout?"></p:confirm></p:commandButton>
 				</f:facet>
 			</p:toolbar>
 				
@@ -67,21 +71,21 @@
 			</p:column>
 			
 			</p:dataTable>
-			</fieldset>
+			
 			
 			
 			<br/>
 			<fieldset>
-			<legend>Bon et Code ligne commande</legend>
+			<legend>Bon commande</legend>
 				<h:panelGrid columns="4" cellpadding="15" >
 		
 			<p:outputLabel value="Commantaire"></p:outputLabel>
-			<p:inputTextarea value="#{bonCommandeController.bonCommande.commentaireBonCommande}" ></p:inputTextarea>
+			<p:inputTextarea value="#{bonCommandeController.bonCommande.commentaireBonCommande}"  ></p:inputTextarea>
 			
 			</h:panelGrid>
 			</fieldset>
 			<br />
-				<p:dataTable var="variable" value="#{bonCommandeController.listLigneCommande}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}" >
+			<p:dataTable var="variable" value="#{bonCommandeController.listLigneCommande}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}" >
 			
 			<p:column headerText="Materiel">
 			<h:outputText value="#{variable.materiel.nomMateriel}" />
@@ -109,11 +113,23 @@
 			</p:dataTable>
 				<p:toolbar >
 				<f:facet name="left">
-					<p:commandButton value="Enregistrer" action="#{bonCommandeController.enregistrer}" update="form"></p:commandButton>
-					<p:commandButton value="Annuler" action="#{bonCommandeController.annuler}" update="form"></p:commandButton>
-					<p:commandButton value="Modifier" action="#{bonCommandeController.modifier}" update="form"></p:commandButton>
+					<p:commandButton  binding="#{bonCommandeController.btnEnregistrer}" value="Enregistrer" action="#{bonCommandeController.enregistrer}" update="form" ><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
+					<p:commandButton  binding="#{bonCommandeController.btnAnnuler}" value="Annuler" action="#{bonCommandeController.annuler}" update="form"><p:confirm header="confirmation" message="voulez-vous annuler?"></p:confirm></p:commandButton>
+					<p:commandButton  binding="#{bonCommandeController.btnModifier}" value="Modifier" action="#{bonCommandeController.modifier}" update="form"><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm></p:commandButton>
 				</f:facet>
 			</p:toolbar>
+			
+			
+	   <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   
+	   </p:confirmDialog>
+	  
 			</h:form>
 		    </ui:define>
 	</ui:composition>

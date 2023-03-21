@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class BonCommandeController {
 	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnModifier = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
+	private CommandButton btnAjouter = new CommandButton();
 	
 	
 	@PostConstruct
@@ -56,11 +59,14 @@ public class BonCommandeController {
 		ligneCommande.setQteLigneCommande(qteLigneCommande);
 		ligneCommande.setMateriel(selectedObject);
 		listObject.add(ligneCommande);
+		info("Ajout effectuée avec succès!");
 		annulerLigneCommande();
 	}
 	
 	public void annulerLigneCommande() {
 		setQteLigneCommande(null);
+		materiel.setCodeMateriel(null);
+		materiel.setNomMateriel(null);
 	}
 	public UserAuthentication chagerUtilisateur() {
 		return userAuthentication = requeteUtilisateur.recuperUser();
@@ -90,7 +96,9 @@ public class BonCommandeController {
 		return new String(prefix+(nbEnregistrement+1));
 	}
 	
-	public void enregistrer() {
+	 public void enregistrer() {
+		
+		System.out.println("=========Lancement============");
 		bonCommande.setCodeBonCommande(genererCodeBoncommande());
 		bonCommande.setCommentaireBonCommande(null);
 		bonCommande.setDate(new Date());
@@ -99,33 +107,34 @@ public class BonCommandeController {
 		for (LigneCommande objetLigneCommande:listObject) {
 			System.out.println("=============Quantité:"+objetLigneCommande.getQteLigneCommande());
 			System.out.println("=============Materiel:"+objetLigneCommande.getMateriel());
-			
 			objetLigneCommande.setBoncommande(bonCommande);
 			objetLigneCommande.setCodeLigneCommande(genererCodeLgneCommande());
 			service.addObject(objetLigneCommande);
 		}
-		
+		this.info("Enregistrement effectuée avec succès!");
 		annuler();
 		
 	}
-	
-	public void modifier() {
-		service.updateObject(ligneCommande);
-		
-		annuler();
-	}
-	
+
 	public void annuler() {
-		bonCommande.setCommentaireBonCommande(null);
-		ligneCommande.setQteLigneCommande(null);
-		
-		
+		bonCommande.setCommentaireBonCommande(null);	
 	}
+	
+
 	public void choisirLigne() {
 	this.materiel = this.selectedObject;
 	}
+	
+	public void info(String monMessage) {
+		FacesContext.getCurrentInstance().addMessage((String) null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, monMessage, null));
+	}
+
+	public void error() {
+		FacesContext.getCurrentInstance().addMessage((String) null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+	}
 	public LigneCommande getLigneCommande() {
-		
 		return ligneCommande;
 	}
 	public void setLigneCommande(LigneCommande ligneCommande) {
@@ -232,6 +241,14 @@ public class BonCommandeController {
 
 	public void setListLigneCommande(List<LigneCommande> listLigneCommande) {
 		this.listLigneCommande = listLigneCommande;
+	}
+
+	public CommandButton getBtnAjouter() {
+		return btnAjouter;
+	}
+
+	public void setBtnAjouter(CommandButton btnAjouter) {
+		this.btnAjouter = btnAjouter;
 	}
 
 
