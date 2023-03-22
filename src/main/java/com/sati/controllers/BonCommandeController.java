@@ -66,6 +66,7 @@ public class BonCommandeController {
 		setQteLigneCommande(null);
 		materiel.setCodeMateriel(null);
 		materiel.setNomMateriel(null);
+		
 	}
 	public UserAuthentication chagerUtilisateur() {
 		return userAuthentication = requeteUtilisateur.recuperUser();
@@ -116,6 +117,7 @@ public class BonCommandeController {
 
 	public void annuler() {
 		bonCommande.setCommentaireBonCommande(null);	
+		setListObject(null);
 	}
 	
 

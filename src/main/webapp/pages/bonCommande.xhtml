@@ -16,7 +16,7 @@
 			<tr>
 			<td style="width: 50%">
 		
-			<p:dataTable id="materiel" var="variable" value="#{bonCommandeController.listMateriel}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}" selectionMode="single"  selection="#{bonCommandeController.selectedObject}" rowKey="#{variable.idMateriel}">
+			<p:dataTable id="materiel" var="variable" value="#{bonCommandeController.listMateriel}"  selectionMode="single"  selection="#{bonCommandeController.selectedObject}" rowKey="#{variable.idMateriel}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}">
 			<f:facet name="header">LISTES DES MATERIELS</f:facet>
 			<p:ajax event="rowSelect" listener="#{bonCommandeController.choisirLigne}" update="form"></p:ajax>
 			
@@ -28,7 +28,7 @@
 			<h:outputText value="#{variable.codeMateriel}" style="width:10%"/>
 			</p:column>
 			
-			</p:dataTable>
+			</p:dataTable >
 			
 			</td>
 			<td>
@@ -41,7 +41,7 @@
 			<p:inputText value="#{bonCommandeController.materiel.nomMateriel}" readonly="true"></p:inputText>
 	
 			<p:outputLabel value="Quantite "></p:outputLabel>
-			<p:inputText value="#{bonCommandeController.qteLigneCommande}" ></p:inputText>
+			<p:inputText value="#{bonCommandeController.qteLigneCommande}"  placeholder="Entrer la quantité svp"></p:inputText>
 	
 			
 			</h:panelGrid>
@@ -60,7 +60,18 @@
 			<tr>
 			<td style="width: 50%">
 			
-			<p:dataTable var="variable" value="#{bonCommandeController.listObject}" >
+				
+			<h:panelGrid columns="4" cellpadding="15" >
+		
+			<p:outputLabel value="Commantaire"></p:outputLabel>
+			<p:inputTextarea value="#{bonCommandeController.bonCommande.commentaireBonCommande}"  ></p:inputTextarea>
+			
+			</h:panelGrid>
+			
+			
+			</td>
+			<td>
+		<p:dataTable var="variable" value="#{bonCommandeController.listObject}" >
 			
 			<p:column headerText="Materiel">
 			<h:outputText value="#{variable.materiel.nomMateriel}"  />
@@ -75,16 +86,6 @@
 			</p:column>
 			
 			</p:dataTable>
-			
-			</td>
-			<td>
-			
-			<h:panelGrid columns="4" cellpadding="15" >
-		
-			<p:outputLabel value="Commantaire"></p:outputLabel>
-			<p:inputTextarea value="#{bonCommandeController.bonCommande.commentaireBonCommande}"  ></p:inputTextarea>
-			
-			</h:panelGrid>
 		
 			</td>
 			</tr>
@@ -108,8 +109,8 @@
 	   
 	   </p:confirmDialog>
 	  
-			</h:form>
-		    </ui:define>
+	   </h:form>
+	   </ui:define>
 	</ui:composition>
 
 </body> 
