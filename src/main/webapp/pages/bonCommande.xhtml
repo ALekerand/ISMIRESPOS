@@ -33,14 +33,14 @@
 			</td>
 			<td>
 					
-			<h:panelGrid columns="2" cellpadding="20" >
-			<p:outputLabel value="Code :"></p:outputLabel>
+			<h:panelGrid columns="4" cellpadding="20" >
+			<p:outputLabel value="Code "></p:outputLabel>
 			<p:inputText value="#{bonCommandeController.materiel.codeMateriel}" readonly="true"></p:inputText>
 			
-			<p:outputLabel value="Designation :"></p:outputLabel>
+			<p:outputLabel value="Designation "></p:outputLabel>
 			<p:inputText value="#{bonCommandeController.materiel.nomMateriel}" readonly="true"></p:inputText>
 	
-			<p:outputLabel value="Quantite :"></p:outputLabel>
+			<p:outputLabel value="Quantite "></p:outputLabel>
 			<p:inputText value="#{bonCommandeController.qteLigneCommande}" ></p:inputText>
 	
 			
@@ -56,10 +56,14 @@
 				
 			
 			<br/>
+			<table >
+			<tr>
+			<td style="width: 50%">
+			
 			<p:dataTable var="variable" value="#{bonCommandeController.listObject}" >
 			
 			<p:column headerText="Materiel">
-			<h:outputText value="#{variable.materiel.nomMateriel}" />
+			<h:outputText value="#{variable.materiel.nomMateriel}"  />
 			</p:column>
 			
 			<p:column headerText="Code Materiel">
@@ -72,45 +76,19 @@
 			
 			</p:dataTable>
 			
+			</td>
+			<td>
 			
-			
-			<br/>
-			<fieldset>
-			<legend>Bon commande</legend>
-				<h:panelGrid columns="4" cellpadding="15" >
+			<h:panelGrid columns="4" cellpadding="15" >
 		
 			<p:outputLabel value="Commantaire"></p:outputLabel>
 			<p:inputTextarea value="#{bonCommandeController.bonCommande.commentaireBonCommande}"  ></p:inputTextarea>
 			
 			</h:panelGrid>
-			</fieldset>
-			<br />
-			<p:dataTable var="variable" value="#{bonCommandeController.listLigneCommande}" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,{ShowAll|'All'}" >
-			
-			<p:column headerText="Materiel">
-			<h:outputText value="#{variable.materiel.nomMateriel}" />
-			</p:column>
-			
-			<p:column headerText="Code Materiel">
-			<h:outputText value="#{variable.materiel.codeMateriel}" />
-			</p:column>
 		
-			<p:column headerText="Code BonCommande">
-			<h:outputText value="#{variable.boncommande.codeBonCommande}" />
-			</p:column>
-			
-			<p:column headerText="Code LigneCommande">
-			<h:outputText value="#{variable.codeLigneCommande}" />
-			</p:column>
-	
-			<p:column headerText="Quantite">
-			<h:outputText value="#{variable.qteLigneCommande}" />
-			</p:column>
-			
-			<p:column headerText="Commmentaire">
-			<h:outputText value="#{variable.boncommande.commentaireBonCommande}" />
-			</p:column>
-			</p:dataTable>
+			</td>
+			</tr>
+			</table>
 				<p:toolbar >
 				<f:facet name="left">
 					<p:commandButton  binding="#{bonCommandeController.btnEnregistrer}" value="Enregistrer" action="#{bonCommandeController.enregistrer}" update="form" ><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>

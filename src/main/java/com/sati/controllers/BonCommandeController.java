@@ -32,7 +32,6 @@ public class BonCommandeController {
 	private List<LigneCommande> listObject = new ArrayList<LigneCommande>();
 	private Materiel materiel = new Materiel();
 	private List<Materiel> listMateriel = new ArrayList<Materiel>();
-	private List<LigneCommande> listLigneCommande = new ArrayList<LigneCommande>();
 	private Materiel selectedObject;
 	private Integer qteLigneCommande;
 	private int idMateriel;
@@ -229,17 +228,6 @@ public class BonCommandeController {
 
 	public void setUserAuthentication(UserAuthentication userAuthentication) {
 		this.userAuthentication = userAuthentication;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<LigneCommande> getListLigneCommande() {
-		listLigneCommande = service.getObjects("LigneCommande");
-		System.out.println("===========Taille de la liste:"+listLigneCommande.size());
-		return listLigneCommande;
-	}
-
-	public void setListLigneCommande(List<LigneCommande> listLigneCommande) {
-		this.listLigneCommande = listLigneCommande;
 	}
 
 	public CommandButton getBtnAjouter() {
