@@ -97,7 +97,7 @@ public class BonCommandeController {
 	}
 	
 	 public void enregistrer() {
-		System.out.println("=========Lancement============");
+		
 		bonCommande.setCodeBonCommande(genererCodeBoncommande());
 		bonCommande.setCommentaireBonCommande(null);
 		bonCommande.setDate(new Date());
