@@ -17,29 +17,32 @@ public class ConsulterBonCommandeController {
 	@Autowired
 	RequeteBonCommande requeteBonCommande;
 	private List<LigneCommande> listLigneCommande = new ArrayList<LigneCommande>();
-	int idBonCommande;
+	String codeBonCommande;
 	
 	
 	
 	public void ChargerLigneCommane() {
 		
-		listLigneCommande = requeteBonCommande.consulterBonCommande(idBonCommande);
+		listLigneCommande = requeteBonCommande.consulterBonCommande(codeBonCommande);
 		
 	}
 	
 	public  void annuler() {
-		setIdBonCommande(0);
+		setCodeBonCommande(null);
 		setListLigneCommande(null);
 		
 	}
 	
 	
-	public int getIdBonCommande() {
-		return idBonCommande;
+
+	public String getCodeBonCommande() {
+		return codeBonCommande;
 	}
-	public void setIdBonCommande(int idBonCommande) {
-		this.idBonCommande = idBonCommande;
+
+	public void setCodeBonCommande(String codeBonCommande) {
+		this.codeBonCommande = codeBonCommande;
 	}
+
 	public List<LigneCommande> getListLigneCommande() {
 		return listLigneCommande;
 	}

@@ -15,7 +15,7 @@
 			<fieldset>
 			<h:panelGrid columns="4" cellpadding="20" >
 			<p:outputLabel value="Numero_Bon_Commande "></p:outputLabel>
-			<p:inputText value="#{consulterBonCommandeController.idBonCommande}" ></p:inputText>
+			<p:inputText value="#{consulterBonCommandeController.codeBonCommande}" ></p:inputText>
 			
 			<p:commandButton value="Rechercher" actionListener="#{consulterBonCommandeController.ChargerLigneCommane}" update="form"></p:commandButton>
 			</h:panelGrid>
@@ -23,10 +23,6 @@
 			</div>
 			<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
 			<p:dataTable id="table" var="variable" value="#{consulterBonCommandeController.listLigneCommande}" >
-			
-			<p:column headerText="Id BonCommande">
-			<h:outputText value="#{variable.boncommande.idBonCommande}"  />
-			</p:column>
 			
 			<p:column headerText="Materiel">
 			<h:outputText value="#{variable.materiel.nomMateriel}"  />

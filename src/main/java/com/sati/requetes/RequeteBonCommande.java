@@ -24,8 +24,8 @@ public class RequeteBonCommande {
 	private SessionFactory sessionFactory;
 	
 	
-	public List consulterBonCommande( int idBonCommande) {
-	String	query = "SELECT * FROM `ligne_commande` WHERE ID_BON_COMMANDE ='"+idBonCommande+"'";
+	public List consulterBonCommande( String codeBonCommande) {
+	String	query = "SELECT * FROM ligne_commande, boncommande WHERE ligne_commande.ID_BON_COMMANDE = boncommande.ID_BON_COMMANDE AND boncommande.CODE_BON_COMMANDE ='"+codeBonCommande+"'";
 	List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(LigneCommande.class).list();
 	return list;
 	}
