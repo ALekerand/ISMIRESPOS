@@ -58,7 +58,7 @@ public class BonCommandeController {
 		ligneCommande.setQteLigneCommande(qteLigneCommande);
 		ligneCommande.setMateriel(selectedObject);
 		listObject.add(ligneCommande);
-		info("Ajout effectuÃ©e avec succÃ¨s!");
+		info("Ajout effectué avec succès");
 		annulerLigneCommande();
 	}
 	
@@ -76,11 +76,11 @@ public class BonCommandeController {
 		String prefix="";
 		int nbEnregistrement = this.service.getObjects("Boncommande").size();
 		if(nbEnregistrement < 10)
-			prefix = "CBC00" ;
+			prefix = "BC00" ;
 		if ((nbEnregistrement >= 10) && (nbEnregistrement < 100)) 
-			prefix = "CBC0" ;
+			prefix = "BC0" ;
 		if (nbEnregistrement > 100) 
-			prefix = "CBC" ;
+			prefix = "BC" ;
 		return new String(prefix+(nbEnregistrement+1));
 	}
 	
@@ -88,11 +88,11 @@ public class BonCommandeController {
 		String prefix="";
 		int nbEnregistrement = this.service.getObjects("LigneCommande").size();
 		if(nbEnregistrement < 10)
-			prefix = "CLC00" ;
+			prefix = "LC00" ;
 		if ((nbEnregistrement >= 10) && (nbEnregistrement < 100)) 
-			prefix = "CLC0" ;
+			prefix = "LC0" ;
 		if (nbEnregistrement > 100) 
-			prefix = "CBC" ;
+			prefix = "LC" ;
 		return new String(prefix+(nbEnregistrement+1));
 	}
 	

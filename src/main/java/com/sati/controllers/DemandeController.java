@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.sati.model.Demande;
 import com.sati.model.Entite;
 import com.sati.model.Entree;
+import com.sati.model.EtatDemande;
 import com.sati.model.Fournisseur;
 import com.sati.model.Materiel;
 import com.sati.model.Personne;
@@ -32,12 +33,13 @@ public class DemandeController {
 	@Autowired
 	RequeteUtilisateur requeteUtilisateur;
 	private Demande demande = new Demande();
+	private Materiel materiel = new Materiel();
 	UserAuthentication userAuthentication = new UserAuthentication();
 	private List<Demande> listTable = new ArrayList<Demande>();
+	private List<Materiel> listMateriel = new ArrayList<Materiel>();
 	private int idMotif;
 	private Demande selectedObject = new Demande();
-	
-	
+	private Materiel selecteMareriel = new Materiel();
 	private int idMatereiel;
 	
 //	Gestion des bouttons de commande
@@ -71,20 +73,21 @@ public class DemandeController {
 	public void enregistrer() {
 		Personne personne = new Personne();
 		Entite entite = new Entite();
-		Materiel materiel = new Materiel();
 		personne = userAuthentication.getPersonne();
 		entite = (Entite) service.getObjectById(personne.getIdEntite(), "Entite");
-		materiel = (Materiel) service.getObjectById(idMatereiel, "Materiel");
+		
 		
 		//Charger les ï¿½lï¿½ments de la demande
-				
 		this.demande.setEntite(entite);
 		this.demande.setMateriel(materiel);
-		this.demande.setEtatDemande(null);
+		this.demande.setEtatDemande((EtatDemande) service.getObjectById(1, "EtatDemande"));
 		this.demande.setDateDemande(new Date());
 		
 		//Enregister en base
 		this.service.addObject(this.demande);
+		
+		annuler();
+		info("Enregistrement efécrué avec succès!");
 		}
 			
 	
@@ -93,9 +96,9 @@ public class DemandeController {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, monMessage, null));
 	}
 
-	public void error() {
+	public void error(String monMessage) {
 		FacesContext.getCurrentInstance().addMessage((String) null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, monMessage, null));
 	}
 
 	public void annuler() {
@@ -106,6 +109,11 @@ public class DemandeController {
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
 	}
+	
+	
+	public void choisirLigneMateriel() {
+		materiel = selecteMareriel;
+		}
 	
 	
 	public void selectionnerLigne() {
@@ -182,6 +190,23 @@ public class DemandeController {
 
 	public void setSelectedObject(Demande selectedObject) {
 		this.selectedObject = selectedObject;
+	}
+
+	public List<Materiel> getListMateriel() {
+		listMateriel = service.getObjects("Materiel");
+		return listMateriel;
+	}
+
+	public void setListMateriel(List<Materiel> listMateriel) {
+		this.listMateriel = listMateriel;
+	}
+
+	public Materiel getSelecteMareriel() {
+		return selecteMareriel;
+	}
+
+	public void setSelecteMareriel(Materiel selecteMareriel) {
+		this.selecteMareriel = selecteMareriel;
 	}
 
 

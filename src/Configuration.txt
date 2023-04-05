@@ -1,0 +1,6 @@
+===================== CONFIGURATION ====================
+
+Table ETATDEMANT
+ 1 : EN ATTENTE
+ 2 : REJETE
+ 3 : LIVRE
