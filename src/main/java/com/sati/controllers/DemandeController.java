@@ -168,7 +168,6 @@ public class DemandeController {
 	@SuppressWarnings("unchecked")
 	public List<Demande> getListTable() {
 		listTable = service.getObjects("Demande");
-		System.out.println("========Taille de la liste es:"+listTable.size());
 		return listTable;
 	}
 
