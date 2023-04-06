@@ -37,9 +37,9 @@
 		</td>
 		<td>	
 	
-	<h:panelGrid columns="6" cellpadding="10">
+	<h:panelGrid columns="2" cellpadding="10">
 	<p:outputLabel for="input_code" value="Code:"></p:outputLabel>
-	<p:inputText id="input_code" value="#{demandeController.demande.codeDemande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+	<p:inputText id="input_code" value="#{demandeController.demande.codeDemande}" readonly="true"></p:inputText>	
 
 	<p:outputLabel for="input_qte" value="Quantité:"></p:outputLabel>
 	<p:inputText id="input_qte" value="#{demandeController.demande.qteDemande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
