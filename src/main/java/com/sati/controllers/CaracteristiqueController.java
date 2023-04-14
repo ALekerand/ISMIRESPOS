@@ -49,9 +49,9 @@ public class CaracteristiqueController {
 
 	public void enregistrer() {
 		this.service.addObject(this.caracteristique);
-		this.info("Eneregistrement éffectué avec succès!");
-		this.annuler();
 		genererCode();
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
+		this.annuler();
 	}
 
 	public void selectionnerLigne() {
@@ -82,7 +82,7 @@ public class CaracteristiqueController {
 		this.service.updateObject(this.caracteristique);
 		this.annuler();
 		genererCode();
-		this.info("Modification effectué avec succés!");
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -117,8 +117,10 @@ public class CaracteristiqueController {
 		this.caracteristique = caracteristique;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Caracteristique> getListTable() {
-		return listTable = service.getObjects("Caracteristique");
+		listTable = service.getObjects("Caracteristique");
+		return listTable;
 	}
 
 	public void setListTable(List<Caracteristique> listTable) {

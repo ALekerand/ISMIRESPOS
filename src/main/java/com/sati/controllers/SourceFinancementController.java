@@ -38,7 +38,6 @@ public class SourceFinancementController {
 		source.setCodeSource(genererCodeSourceFin());
 	}
 	
-	
 	public String genererCodeSourceFin() {
 		String prefix="";
 		int nbEnregistrement = this.service.getObjects("SourceFinancement").size();
@@ -53,7 +52,7 @@ public class SourceFinancementController {
 
 	public void enregistrer() {
 		this.service.addObject(this.source);
-		this.info("Eneregistrement ÈffectuÈ avec succËs!");
+		this.info("Eneregistrement effectu√© avec succ√®s!");
 		this.annuler();
 		genererCodeSourceFin();
 	}
@@ -79,14 +78,14 @@ public class SourceFinancementController {
 		this.source.setDescriptionSource(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectu√©e avec succ√®s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.source);
+		this.info("Modification effectu√© avec succ√®s!");
 		this.annuler();
-		this.info("Modification effectuÈ avec succÈs!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuÈe!", null));
+	
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -123,7 +122,8 @@ public class SourceFinancementController {
 
 	@SuppressWarnings("unchecked")
 	public List<SourceFinancement> getListTable() {
-		return listTable = service.getObjects("SourceFinancement");
+		listTable = service.getObjects("SourceFinancement");
+		return listTable;
 	}
 
 	public void setListTable(List<SourceFinancement> listTable) {

@@ -27,7 +27,6 @@ public class EtatDemandeController {
 	private List<EtatDemande> listTable = new ArrayList<EtatDemande>();
 	private EtatDemande selectedObject = new EtatDemande();
 	
-
 	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
 	private CommandButton btnModifier = new CommandButton();
@@ -52,7 +51,7 @@ public class EtatDemandeController {
 
 	public void enregistrer() {
 		this.service.addObject(this.etatDemande);
-		this.info("Eneregistrement �ffectu� avec succ�s!");
+		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
 		this.genererCodeEtatDemande();
 	}
@@ -68,6 +67,7 @@ public class EtatDemandeController {
 		this.etatDemande.setLibEtatDemande(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuée avec succès!");
 	}
 	
 	
@@ -83,10 +83,8 @@ public class EtatDemandeController {
 
 	public void modifier() {
 		this.service.updateObject(this.etatDemande);
-		this.annuler();
 		this.info("Modification effectué avec succès!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetu�e!", null));
+		this.annuler();
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -129,8 +127,10 @@ public class EtatDemandeController {
 		this.selectedObject = selectedObject;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<EtatDemande> getListTable() {
-		return listTable = service.getObjects("EtatDemande");
+	 listTable = service.getObjects("EtatDemande");
+	 return listTable;
 	}
 
 	public void setListTable(List<EtatDemande> listTable) {

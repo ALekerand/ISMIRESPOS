@@ -38,11 +38,10 @@ public class FonctionController {
 
 	public void enregistrer() {
 		this.service.addObject(this.fonction);
-		this.info("Eneregistrement effectué avec succ�s!");
+		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
 		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetu�!", null));
+		
 	}
 
 	public void selectionnerLigne() {
@@ -66,14 +65,14 @@ public class FonctionController {
 		this.fonction.setLibFonction(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuée avec succès!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.fonction);
+		this.info("Modification effectué avec succès!");
 		this.annuler();
-		this.info("Modification effectu� avec succ�s!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetu�e!", null));
+	
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -110,9 +109,9 @@ public class FonctionController {
 
 	@SuppressWarnings("unchecked")
 	public List<Fonction> getListTable() {
-		return listTable = service.getObjects("Fonction");
+		listTable = service.getObjects("Fonction");
+		return listTable;
 	}
-
 	public void setListTable(List<Fonction> listTable) {
 		this.listTable = listTable;
 	}

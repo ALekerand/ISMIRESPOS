@@ -63,12 +63,12 @@ public class PersonneController {
 	}
 
 	public void enregistrer() {
-		//Recupéraion de la fonction
+		//Recuperaion de la fonction
 		this.fonction = (Fonction) this.service.getObjectById(idFonction, "Fonction");
 		this.personne.setEntite(entite);
 		this.personne.setFonction(fonction);
 		
-		//Enregistrement de l'entité et de la personne
+		//Enregistrement de l'entitÃ© et de la personne
 		this.entite.setCodeEntite(codeEntite);
 		this.service.addObject(entite);
 		personne.setCodeEntite(entite.getCodeEntite());
@@ -86,15 +86,15 @@ public class PersonneController {
 		this.userAuthentication.setEnabled(true);
 		this.service.addObject(this.userAuthentication);
 		
-		//Mis à jour de userAuthorization
+		//Mise jour de userAuthorization
 		userauthorization.setUserAuthentication(userAuthentication);
 		this.service.updateObject(userauthorization);
 		
-		//Mis à jour de personne
+		//Mise jour de personne
 		personne.setUserAuthentication(userAuthentication);
 		service.updateObject(personne);
 		
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
 	}
 
@@ -131,14 +131,13 @@ public class PersonneController {
 		this.userAuthentication.setPassword(null);
 		
 		setIdFonction(0);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.personne);
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {
@@ -175,7 +174,8 @@ public class PersonneController {
 
 	@SuppressWarnings("unchecked")
 	public List<Personne> getListTable() {
-		return listTable = this.service.getObjects("Personne");
+		listTable = this.service.getObjects("Personne");
+		return listTable;
 	}
 
 	public void setListTable(List<Personne> listTable) {
@@ -200,7 +200,8 @@ public class PersonneController {
 
 	@SuppressWarnings("unchecked")
 	public List<Fonction> getListFonction() {
-		return listFonction = this.service.getObjects("Fonction");
+	       listFonction = this.service.getObjects("Fonction");
+	       return listFonction;
 	}
 
 	public void setListFonction(List<Fonction> listFonction) {

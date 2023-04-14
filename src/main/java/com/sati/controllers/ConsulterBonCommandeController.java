@@ -28,12 +28,9 @@ public class ConsulterBonCommandeController {
 	}
 	
 	public  void annuler() {
-		setCodeBonCommande(null);
 		setListLigneCommande(null);
-		
+		setCodeBonCommande(null);
 	}
-	
-	
 
 	public String getCodeBonCommande() {
 		return codeBonCommande;

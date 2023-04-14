@@ -37,11 +37,9 @@ public class NatureController {
 
 	public void enregistrer() {
 		this.service.addObject(this.nature);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
 		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetué!", null));
 	}
 
 	public void selectionnerLigne() {
@@ -66,16 +64,15 @@ public class NatureController {
 		this.nature.setDescriptionNature(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.nature);
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+	
 	}
-
 	public CommandButton getBtnEnregistrer() {
 		return this.btnEnregistrer;
 	}
@@ -110,7 +107,8 @@ public class NatureController {
 
 	@SuppressWarnings("unchecked")
 	public List<Nature> getListTable() {
-		return listTable = service.getObjects("Nature");
+		 listTable = service.getObjects("Nature");
+		 return listTable;
 	}
 
 	public void setListTable(List<Nature> listTable) {

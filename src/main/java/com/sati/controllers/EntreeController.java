@@ -48,6 +48,7 @@ public class EntreeController {
 	@PostConstruct
 	public void initialiser() {
 		this.btnModifier.setDisabled(true);
+		genererCodeEntree();
 		chagerUtilisateur();
 	}
 	
@@ -85,11 +86,10 @@ public class EntreeController {
 		this.materiel.setStockActuel(this.materiel.getStockActuel()+ this.entree.getQteEntree());
 		service.updateObject(materiel);
 		
-		//Actualiser le stock du materiel concern�
+	
 		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
 	}
-	
 	
 	public void chargerMateriel() {
 		materiel = new Materiel();
@@ -114,6 +114,7 @@ public class EntreeController {
 		this.entree.setQteEntree(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuée avec succès!");
 		
 	}
 

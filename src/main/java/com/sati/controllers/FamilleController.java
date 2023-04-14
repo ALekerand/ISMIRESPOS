@@ -35,11 +35,9 @@ public class FamilleController {
 
 	public void enregistrer() {
 		this.service.addObject(this.famille);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succï¿½s!");
 		this.annuler();
 		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetué!", null));
 	}
 
 	public void selectionnerLigne() {
@@ -64,14 +62,14 @@ public class FamilleController {
 		this.famille.setLibFamille(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.famille);
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+		
 	}
 
 	public CommandButton getBtnEnregistrer() {

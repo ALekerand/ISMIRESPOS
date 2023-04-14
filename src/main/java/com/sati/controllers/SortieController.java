@@ -38,8 +38,6 @@ public class SortieController {
 	private int idDemande;
 	private Date dateSortie;
 	
-	
-	
 //	Gestion des bouttons de commande
 	private CommandButton btnEnregistrer = new CommandButton();
 	private CommandButton btnAnnuler = new CommandButton();
@@ -96,10 +94,9 @@ public class SortieController {
 	
 	public void modifier() {
 		this.service.updateObject(this.sortie);
+		this.info("Modification effectué avec succès!");
 		this.annuler();
-		this.info("Modification effectu� avec succ�s!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+
 	}
 	
 	public void annuler() {
@@ -107,6 +104,7 @@ public class SortieController {
 		sortie.setCodeSortie(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuée avec succès!");
 	}
 	public Sortie getSortie() {
 		return sortie;

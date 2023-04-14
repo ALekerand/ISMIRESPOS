@@ -37,7 +37,6 @@ public class FournisseurController {
 		fournisseur.setCodeFournisseur(genererCodeFournisseur());
 	}
 	
-	
 	public String genererCodeFournisseur() {
 		String prefix="";
 		int nbEnregistrement = this.service.getObjects("Fournisseur").size();
@@ -52,9 +51,9 @@ public class FournisseurController {
 
 	public void enregistrer() {
 		this.service.addObject(this.fournisseur);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		//Generer à nouveau le code du fournisseur
+		//Generer ï¿½ nouveau le code du fournisseur
 		fournisseur.setCodeFournisseur(genererCodeFournisseur());
 	}
 
@@ -82,14 +81,13 @@ public class FournisseurController {
 		this.fournisseur.setTelephoneFournisseur(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.fournisseur);
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {

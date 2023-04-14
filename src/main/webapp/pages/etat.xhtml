@@ -13,6 +13,7 @@
 			<ui:define name="body">
 			<div style="font-size: 15px ;  padding-left: 20px; padding-right: 20px">
 				<h:form id="form">
+				
 				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
 		<fieldset>
  	<legend>ENREGISTREMENT DES ETATS DE MATERIEL</legend>		
@@ -28,14 +29,14 @@
 <br/>
 <p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{etatController.enregistrer}" update="form" binding="#{etatController.btnEnregistrer}"></p:commandButton>
-				<p:commandButton value="Annuler"  action="#{etatController.annuler}" process="@this" update="form" binding="#{etatController.btnAnnuler}"></p:commandButton>
-				<p:commandButton value="Modifier"  action="#{etatController.modifier}" update="form" binding="#{etatController.btnModifier}"></p:commandButton>
+				<p:commandButton value="Enregistrer" action="#{etatController.enregistrer}" update="form" binding="#{etatController.btnEnregistrer}"><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{etatController.annuler}" process="@this" update="form" binding="#{etatController.btnAnnuler}"><p:confirm header="confirmation" message="voulez-vous annuler?"></p:confirm></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{etatController.modifier}" update="form" binding="#{etatController.btnModifier}"><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm></p:commandButton>
 			</f:facet>
 		</p:toolbar>
 		<br/>
 <div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
-	<p:dataTable  var="var" value="#{etatController.listFamille}"  selectionMode="single" selection="#{etatController.selectedObject}" rowKey="#{var.idEtat}">
+	<p:dataTable  var="var" value="#{etatController.listEtat}"  selectionMode="single" selection="#{etatController.selectedObject}" rowKey="#{var.idEtat}">
  
  <f:facet name="header"> LISTE DES ETATS DE MATERIEL </f:facet>
      <p:ajax event="rowSelect" process="@this"  update="form" listener="#{etatController.selectionnerLigne}"></p:ajax>
@@ -50,6 +51,15 @@
         
         </p:dataTable>
 				</div>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   </p:confirmDialog>
+	  
 				</h:form>
 				</div>
 			</ui:define>

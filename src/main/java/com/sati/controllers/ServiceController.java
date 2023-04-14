@@ -56,7 +56,7 @@ public class ServiceController {
 	}
 
 	public void enregistrer() {
-		//Enregistrement de l'entité et du service
+		//Enregistrement de l'entitï¿½ et du service
 		this.entite.setCodeEntite(codeEntite);
 		this.entite.setEmail(serviceObj.getEmail());
 		this.entite.setTelephone(codeEntite);
@@ -66,7 +66,7 @@ public class ServiceController {
 		this.serviceObj.setEntite(entite);
 		this.serviceObj.setCodeEntite(codeEntite);
 		this.service.addObject(this.serviceObj);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
 	}
 
@@ -88,17 +88,17 @@ public class ServiceController {
 
 	public void annuler() {
 		
-		
 		this.serviceObj.setCodeEntite(null);
 		this.serviceObj.setTelephone(null);
 		this.serviceObj.setEmail(null);
 		this.serviceObj.setNomService(null);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.serviceObj);
+		this.info("Modification effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
 		this.btnAnnuler.setDisabled(false);
@@ -138,7 +138,8 @@ public class ServiceController {
 
 	@SuppressWarnings("unchecked")
 	public List<Service> getListTable() {
-		return listTable = service.getObjects("Service");
+		 listTable = service.getObjects("Service");
+		 return listTable;
 	}
 
 	public void setListTable(List<Service> listTable) {

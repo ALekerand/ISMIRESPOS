@@ -13,8 +13,9 @@
 			<ui:define name="body">
 				<h:form id="form">
 				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
-<p:panel header="Enregistrement des caractéristiques"> 		
-<h:panelGrid columns="6" cellpadding="10">
+				
+	<p:panel header="Enregistrement des caractéristiques"> 		
+		<h:panelGrid columns="6" cellpadding="10">
 	<p:outputLabel for="input_code" value="Code:"></p:outputLabel>
 	<p:inputText id="input_code" value="#{caracteristiqueController.caracteristique.codeCaracteristique}" readonly="true"></p:inputText>	
 
@@ -28,9 +29,9 @@
 <br/>
 <p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{caracteristiqueController.enregistrer}" update="form" binding="#{caracteristiqueController.btnEnregistrer}"></p:commandButton>
-				<p:commandButton value="Annuler"  action="#{caracteristiqueController.annuler}" process="@this" update="form" binding="#{caracteristiqueController.btnAnnuler}"></p:commandButton>
-				<p:commandButton value="Modifier"  action="#{caracteristiqueController.modifier}" update="form" binding="#{caracteristiqueController.btnModifier}"></p:commandButton>
+				<p:commandButton value="Enregistrer" action="#{caracteristiqueController.enregistrer}" update="form" binding="#{caracteristiqueController.btnEnregistrer}"><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{caracteristiqueController.annuler}" process="@this" update="form" binding="#{caracteristiqueController.btnAnnuler}"><p:confirm header="confirmation" message="voulez-vous annuler?"></p:confirm></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{caracteristiqueController.modifier}" update="form" binding="#{caracteristiqueController.btnModifier}"><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm></p:commandButton>
 			</f:facet>
 		</p:toolbar>
 		<br/>
@@ -53,7 +54,14 @@
         </p:column>
         
         </p:dataTable>
-				
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   </p:confirmDialog>
 				</h:form>
 			</ui:define>
 	</ui:composition>

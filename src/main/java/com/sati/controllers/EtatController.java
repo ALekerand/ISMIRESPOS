@@ -36,11 +36,9 @@ public class EtatController {
 
 	public void enregistrer() {
 		this.service.addObject(this.etat);
-		this.info("Eneregistrement effectué avec succ�s!");
+		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetu�!", null));
+	
 	}
 
 	public void selectionnerLigne() {
@@ -60,18 +58,17 @@ public class EtatController {
 	}
 
 	public void annuler() {
-	this.etat.setCodeEtat(null);
-	this.etat.setLibEtat(null);
+		this.etat.setCodeEtat(null);
+		this.etat.setLibEtat(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuée avec succès!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.etat);
 		this.annuler();
 		this.info("Modification effectuée avec succès!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetu�e!", null));
 	}
 
 	public CommandButton getBtnEnregistrer() {

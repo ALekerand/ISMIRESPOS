@@ -36,11 +36,8 @@ public class MagasinController {
 
 	public void enregistrer() {
 		this.service.addObject(this.magasin);
-		this.info("Eneregistrement éffectué avec succès!");
+		this.info("Eneregistrement effectuÃ© avec succÃ¨s!");
 		this.annuler();
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement effcetué!", null));
 	}
 
 	public void selectionnerLigne() {
@@ -64,14 +61,14 @@ public class MagasinController {
 		this.magasin.setTelephoneMagasin(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
+		info("Annulation effectuÃ©e avec succÃ¨s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.magasin);
+		this.info("Modification effectuÃ©e avec succï¿½s!");
 		this.annuler();
-		this.info("Modification effectué avec succés!");
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification effcetuée!", null));
+		
 	}
 
 	public CommandButton getBtnEnregistrer() {

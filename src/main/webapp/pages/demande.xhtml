@@ -12,12 +12,13 @@
 	<ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
 				<h:form id="form">
-				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
+			<p:messages autoUpdate="true" closable="true" showDetail="false"/>
+			
 	<p:panel header="Enregistrement des demandes"> 
 	
 	<table >
 	<tr>
-	<td style="width: 50%">
+	<td >
 	
 	<p:dataTable  var="var" value="#{demandeController.listMateriel}"  selectionMode="single" selection="#{demandeController.selecteMareriel}" rowKey="#{var.idMateriel}">
  
@@ -37,9 +38,9 @@
 		</td>
 		<td>	
 	
-	<h:panelGrid columns="2" cellpadding="10">
+	<h:panelGrid columns="4" cellpadding="5">
 	<p:outputLabel for="input_code" value="Code:"></p:outputLabel>
-	<p:inputText id="input_code" value="#{demandeController.demande.codeDemande}" readonly="true"></p:inputText>	
+	<p:inputText id="input_code" value="#{demandeController.demande.codeDemande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 
 	<p:outputLabel for="input_qte" value="Quantité:"></p:outputLabel>
 	<p:inputText id="input_qte" value="#{demandeController.demande.qteDemande}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
@@ -56,9 +57,9 @@
 <br/>
 <p:toolbar >
 			<f:facet name="left">
-				<p:commandButton value="Enregistrer" action="#{demandeController.enregistrer}" update="form" binding="#{demandeController.btnEnregistrer}"></p:commandButton>
-				<p:commandButton value="Annuler"  action="#{demandeController.annuler}" process="@this" update="form" binding="#{demandeController.btnAnnuler}"></p:commandButton>
-				<p:commandButton value="Modifier"  action="#{demandeController.modifier}" update="form" binding="#{demandeController.btnModifier}"></p:commandButton>
+				<p:commandButton value="Enregistrer" action="#{demandeController.enregistrer}" update="form" binding="#{demandeController.btnEnregistrer}"><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
+				<p:commandButton value="Annuler"  action="#{demandeController.annuler}" process="@this" update="form" binding="#{demandeController.btnAnnuler}"><p:confirm header="confirmation" message="voulez-vous annuler?"></p:confirm></p:commandButton>
+				<p:commandButton value="Modifier"  action="#{demandeController.modifier}" update="form" binding="#{demandeController.btnModifier}"><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm></p:commandButton>
 			</f:facet>
 		</p:toolbar>
 		<br/>
@@ -96,6 +97,16 @@
         
         </p:dataTable>
 				
+					
+	   <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   </p:confirmDialog>
+	   
 				</h:form>
 			</ui:define>
 	</ui:composition>

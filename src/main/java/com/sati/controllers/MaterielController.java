@@ -76,7 +76,6 @@ public class MaterielController {
 		return new String(prefix+(nbEnregistrement+1));
 	}
 	
-	
 	public void chargerListeCaracteristiqueValeur() {
 		 for (Caracteristique caracteristique : (List<Caracteristique>)service.getObjects("Caracteristique")){
 			 CaracteristiqueValeur  caracteristiqueValeur = new CaracteristiqueValeur();
@@ -107,7 +106,7 @@ public class MaterielController {
 				service.addObject(valeur);
 			}
 		}
-		this.info("Eneregistrement ÈffectuÈ avec succËs!");
+		this.info("Eneregistrement effectu√© avec succ√®s!");
 		this.annuler();
 	}
 
@@ -138,18 +137,21 @@ public class MaterielController {
 		this.setIdFamille(0);
 		this.setIdMagasin(0);
 		this.setIdNature(0);
+		info("Annulation effectu√©e avec succ√®s!");
+		
 		
 		// vider la liste des valeurs des ^caracteristiques
 		for (CaracteristiqueValeur caracteristiqueValeur : listCaracteristiqueValeur) {
 			caracteristiqueValeur.setValeurCaracteristique("");
 			
 		}
+		info("Annulation effectu√©e avec succ√®s!");
 	}
 
 	public void modifier() {
 		this.service.updateObject(this.materiel);
 		this.annuler();
-		this.info("Modification effectuÈ avec succÈs!");
+		this.info("Modification effectu√© avec succ√®s!");
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);
 		this.btnAnnuler.setDisabled(false);
@@ -157,12 +159,12 @@ public class MaterielController {
 	
 	
 	 public void onRowEdit(RowEditEvent event) {
-	    info("Valeur de caractÈristique ÈditÈe");
+	    info("Valeur de caract√©ristique √©dit√©e");
 	    }
 	 
 	 
 	 public void onRowCancel(RowEditEvent event) {	        
-	        info("Edition terminÈe");
+	        info("Edition termin√©e");
 	    }
 	
 	
@@ -202,7 +204,8 @@ public class MaterielController {
 
 	@SuppressWarnings("unchecked")
 	public List<Famille> getListFamille() {
-		return listFamille = service.getObjects("Famille");
+		listFamille = service.getObjects("Famille");
+		return listFamille;
 	}
 
 	public void setListFamille(List<Famille> listFamille) {
@@ -218,8 +221,10 @@ public class MaterielController {
 		this.materiel = materiel;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Materiel> getListTable() {
-		return listTable = service.getObjects("Materiel");
+		 listTable = service.getObjects("Materiel");
+		 return listTable;
 	}
 
 	public void setListTable(List<Materiel> listTable) {
@@ -242,16 +247,20 @@ public class MaterielController {
 		this.idNature = idNature;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Nature> getListNature() {
-		return listNature = service.getObjects("Nature");
+		listNature = service.getObjects("Nature");
+		return listNature;
 	}
 
 	public void setListNature(List<Nature> listNature) {
 		this.listNature = listNature;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Magasin> getListMagasin() {
-		return listMagasin = service.getObjects("Magasin");
+		 listMagasin = service.getObjects("Magasin");
+		 return listMagasin;
 	}
 
 	public void setListMagasin(List<Magasin> listMagasin) {

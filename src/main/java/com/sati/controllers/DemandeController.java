@@ -77,7 +77,7 @@ public class DemandeController {
 		entite = (Entite) service.getObjectById(personne.getIdEntite(), "Entite");
 		
 		
-		//Charger les ï¿½lï¿½ments de la demande
+		//Charger les elements de la demande
 		this.demande.setEntite(entite);
 		this.demande.setMateriel(materiel);
 		this.demande.setEtatDemande((EtatDemande) service.getObjectById(1, "EtatDemande"));
@@ -86,8 +86,8 @@ public class DemandeController {
 		//Enregister en base
 		this.service.addObject(this.demande);
 		
+		info("Enregistrement effectuÃ© avec succÃ¨s!");
 		annuler();
-		info("Enregistrement efécrué avec succès!");
 		}
 			
 	
@@ -115,7 +115,10 @@ public class DemandeController {
 		materiel = selecteMareriel;
 		}
 	
-	
+	public void modifier() {
+		service.updateObject(demande);
+		info("Modification effectuÃ©e avec succÃ¨s!");
+	}
 	public void selectionnerLigne() {
 		this.demande = this.selectedObject;
 		this.btnEnregistrer.setDisabled(true);
@@ -191,6 +194,7 @@ public class DemandeController {
 		this.selectedObject = selectedObject;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Materiel> getListMateriel() {
 		listMateriel = service.getObjects("Materiel");
 		return listMateriel;

@@ -49,6 +49,7 @@ public class BonCommandeController {
 	@PostConstruct
 	public void initialiser() {
 		btnModifier.setDisabled(true);
+		genererCodeBoncommande();
 		chagerUtilisateur();
 	}
 	
@@ -58,7 +59,7 @@ public class BonCommandeController {
 		ligneCommande.setQteLigneCommande(qteLigneCommande);
 		ligneCommande.setMateriel(selectedObject);
 		listObject.add(ligneCommande);
-		info("Ajout effectué avec succès");
+		info("Ajout effectuï¿½ avec succï¿½s");
 		annulerLigneCommande();
 	}
 	
@@ -116,8 +117,9 @@ public class BonCommandeController {
 	}
 
 	public void annuler() {
-		bonCommande.setCommentaireBonCommande(null);	
 		setListObject(null);
+		bonCommande.setCommentaireBonCommande(null);	
+		
 	}
 	
 
