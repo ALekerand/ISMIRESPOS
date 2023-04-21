@@ -52,7 +52,7 @@ public class FonctionController {
 
 	public void info(String monMessage) {
 		FacesContext.getCurrentInstance().addMessage((String) null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", monMessage));
+				new FacesMessage(FacesMessage.SEVERITY_INFO,monMessage ,null ));
 	}
 
 	public void error() {

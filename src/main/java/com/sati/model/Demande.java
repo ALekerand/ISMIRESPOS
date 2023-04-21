@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "demande", catalog = "ismistock_bd")
 public class Demande implements java.io.Serializable {
 
-	private int idDemande;
+	private Date idDemande;
 	private Entite entite;
 	private EtatDemande etatDemande;
 	private Materiel materiel;
@@ -34,23 +34,25 @@ public class Demande implements java.io.Serializable {
 	private String motifDemande;
 	private Integer qteDemande;
 	private Date dateDemande;
+	private Date dateTraitement;
 	private String motifEtatDemande;
+	private Boolean etatReception;
+	private Date dateEtatReception;
 	private Set<Sortie> sorties = new HashSet<Sortie>(0);
 
 	public Demande() {
 	}
 
-	public Demande(int idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel, Date dateDemande) {
+	public Demande(Date idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel) {
 		this.idDemande = idDemande;
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiel = materiel;
-		this.dateDemande = dateDemande;
 	}
 
-	public Demande(int idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie,
-			String codeDemande, String motifDemande, Integer qteDemande, Date dateDemande, String motifEtatDemande,
-			Set<Sortie> sorties) {
+	public Demande(Date idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie,
+			String codeDemande, String motifDemande, Integer qteDemande, Date dateDemande, Date dateTraitement,
+			String motifEtatDemande, Boolean etatReception, Date dateEtatReception, Set<Sortie> sorties) {
 		this.idDemande = idDemande;
 		this.entite = entite;
 		this.etatDemande = etatDemande;
@@ -60,23 +62,27 @@ public class Demande implements java.io.Serializable {
 		this.motifDemande = motifDemande;
 		this.qteDemande = qteDemande;
 		this.dateDemande = dateDemande;
+		this.dateTraitement = dateTraitement;
 		this.motifEtatDemande = motifEtatDemande;
+		this.etatReception = etatReception;
+		this.dateEtatReception = dateEtatReception;
 		this.sorties = sorties;
 	}
 
 	@Id
 	@GenericGenerator(name="lekerand" , strategy="increment")
 	@GeneratedValue(generator="lekerand")
-	@Column(name = "ID_DEMANDE", unique = true, nullable = false)
-	public int getIdDemande() {
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ID_DEMANDE", unique = true, nullable = false, length = 19)
+	public Date getIdDemande() {
 		return this.idDemande;
 	}
 
-	public void setIdDemande(int idDemande) {
+	public void setIdDemande(Date idDemande) {
 		this.idDemande = idDemande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Entite getEntite() {
 		return this.entite;
@@ -86,7 +92,7 @@ public class Demande implements java.io.Serializable {
 		this.entite = entite;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ETAT_DEMANDE", nullable = false)
 	public EtatDemande getEtatDemande() {
 		return this.etatDemande;
@@ -96,7 +102,7 @@ public class Demande implements java.io.Serializable {
 		this.etatDemande = etatDemande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;
@@ -144,13 +150,23 @@ public class Demande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_DEMANDE", nullable = false, length = 19)
+	@Column(name = "DATE_DEMANDE", length = 19)
 	public Date getDateDemande() {
 		return this.dateDemande;
 	}
 
 	public void setDateDemande(Date dateDemande) {
 		this.dateDemande = dateDemande;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATE_TRAITEMENT", length = 19)
+	public Date getDateTraitement() {
+		return this.dateTraitement;
+	}
+
+	public void setDateTraitement(Date dateTraitement) {
+		this.dateTraitement = dateTraitement;
 	}
 
 	@Column(name = "MOTIF_ETAT_DEMANDE", length = 50)
@@ -160,6 +176,25 @@ public class Demande implements java.io.Serializable {
 
 	public void setMotifEtatDemande(String motifEtatDemande) {
 		this.motifEtatDemande = motifEtatDemande;
+	}
+
+	@Column(name = "ETAT_RECEPTION")
+	public Boolean getEtatReception() {
+		return this.etatReception;
+	}
+
+	public void setEtatReception(Boolean etatReception) {
+		this.etatReception = etatReception;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATE_ETAT_RECEPTION", length = 19)
+	public Date getDateEtatReception() {
+		return this.dateEtatReception;
+	}
+
+	public void setDateEtatReception(Date dateEtatReception) {
+		this.dateEtatReception = dateEtatReception;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "demande")

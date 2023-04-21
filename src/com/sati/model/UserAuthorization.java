@@ -1,9 +1,11 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,31 +18,27 @@ import javax.persistence.Table;
 @Table(name = "user_authorization", catalog = "ismistock_bd")
 public class UserAuthorization implements java.io.Serializable {
 
-	private int userRoleId;
+	private Integer userRoleId;
 	private UserAuthentication userAuthentication;
 	private String role;
 
 	public UserAuthorization() {
 	}
 
-	public UserAuthorization(int userRoleId) {
-		this.userRoleId = userRoleId;
-	}
-
-	public UserAuthorization(int userRoleId, UserAuthentication userAuthentication, String role) {
-		this.userRoleId = userRoleId;
+	public UserAuthorization(UserAuthentication userAuthentication, String role) {
 		this.userAuthentication = userAuthentication;
 		this.role = role;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "USER_ROLE_ID", unique = true, nullable = false)
-	public int getUserRoleId() {
+	public Integer getUserRoleId() {
 		return this.userRoleId;
 	}
 
-	public void setUserRoleId(int userRoleId) {
+	public void setUserRoleId(Integer userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 

@@ -1,11 +1,12 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "diagnostique", catalog = "ismistock_bd")
 public class Diagnostique implements java.io.Serializable {
 
-	private int idDiagnostique;
+	private Integer idDiagnostique;
 	private Etat etat;
 	private Materiel materiel;
 	private String codeDiagnostique;
@@ -32,15 +33,13 @@ public class Diagnostique implements java.io.Serializable {
 	public Diagnostique() {
 	}
 
-	public Diagnostique(int idDiagnostique, Etat etat, Materiel materiel) {
-		this.idDiagnostique = idDiagnostique;
+	public Diagnostique(Etat etat, Materiel materiel) {
 		this.etat = etat;
 		this.materiel = materiel;
 	}
 
-	public Diagnostique(int idDiagnostique, Etat etat, Materiel materiel, String codeDiagnostique,
-			Date dateDiagnostique, String commentaire) {
-		this.idDiagnostique = idDiagnostique;
+	public Diagnostique(Etat etat, Materiel materiel, String codeDiagnostique, Date dateDiagnostique,
+			String commentaire) {
 		this.etat = etat;
 		this.materiel = materiel;
 		this.codeDiagnostique = codeDiagnostique;
@@ -49,14 +48,14 @@ public class Diagnostique implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_DIAGNOSTIQUE", unique = true, nullable = false)
-	public int getIdDiagnostique() {
+	public Integer getIdDiagnostique() {
 		return this.idDiagnostique;
 	}
 
-	public void setIdDiagnostique(int idDiagnostique) {
+	public void setIdDiagnostique(Integer idDiagnostique) {
 		this.idDiagnostique = idDiagnostique;
 	}
 

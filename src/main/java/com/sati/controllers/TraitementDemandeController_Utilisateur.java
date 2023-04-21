@@ -3,6 +3,7 @@ package com.sati.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -11,53 +12,56 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Demande;
+import com.sati.model.Entite;
 import com.sati.model.EtatDemande;
+import com.sati.model.Personne;
+import com.sati.model.UserAuthentication;
 import com.sati.requetes.RequeteDemande;
+import com.sati.requetes.RequeteUtilisateur;
 import com.sati.service.Iservice;
 
 @Component
 @Scope("session")
-public class TraitementDemandeController {
+public class TraitementDemandeController_Utilisateur {
 	
 	@Autowired
 	Iservice service;
 	@Autowired
 	RequeteDemande requeteDemande;
+	@Autowired
+	RequeteUtilisateur requeteUtilisateur;
 	private Demande demande = new Demande();
+	UserAuthentication userAuthentication = new UserAuthentication();
 	private List<Demande> listTable = new ArrayList<Demande>();
 	private List<Demande> listeDemande = new ArrayList<Demande>();
 	private List<EtatDemande> listEtatDemande = new ArrayList<EtatDemande>();
 	private Demande selectedObject = new Demande();
 	private int idEtatDemande;
+	private int idEntite;
 	
 
+	@PostConstruct
+	public void initialiser() {
+		chagerUtilisateur();
+	}
 	@SuppressWarnings("unchecked")
 	public void traiterDemande() {
-		listeDemande = requeteDemande.afficherDemande(idEtatDemande);
+		Personne personne = new Personne();
+		Entite entite = new Entite();
+		personne = userAuthentication.getPersonne();
+		entite = (Entite) service.getObjectById(personne.getIdEntite(), "Entite");
+		idEntite = entite.getIdEntite();
+		listeDemande = requeteDemande.afficherDemande_Utilisateur(idEtatDemande,idEntite);
+		annuler();
 		
 	}
 	
-	
+	public UserAuthentication chagerUtilisateur() {
+		return userAuthentication = requeteUtilisateur.recuperUser();
+	}
 	public void selectionnerLigne() {
 		this.demande = this.selectedObject;
 		
-	}
-	
-	
-	public void validerDemande() {
-		selectedObject.setEtatDemande((EtatDemande)service.getObjectById(2, "EtatDemande"));
-		service.updateObject(selectedObject);
-		info("Demande validée");
-		
-		annuler();
-	}
-
-	public void rejeterDemande() {
-		selectedObject.setEtatDemande((EtatDemande)service.getObjectById(3, "EtatDemande"));
-		service.updateObject(selectedObject);
-		info("Demande rejetée");
-        
-        annuler();
 	}
 	
 	public void annuler() {
@@ -123,7 +127,11 @@ public class TraitementDemandeController {
 	public void setIdEtatDemande(int idEtatDemande) {
 		this.idEtatDemande = idEtatDemande;
 	}
-
-
+	public int getIdEntite() {
+		return idEntite;
+	}
+	public void setIdEntite(int idEntite) {
+		this.idEntite = idEntite;
+	}
 
 }

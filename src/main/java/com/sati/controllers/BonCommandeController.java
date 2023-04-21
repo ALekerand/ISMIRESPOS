@@ -101,7 +101,7 @@ public class BonCommandeController {
 		
 		bonCommande.setCodeBonCommande(genererCodeBoncommande());
 		bonCommande.setCommentaireBonCommande(null);
-		bonCommande.setDate(new Date());
+		bonCommande.setDateBonCommande(new Date());
 		bonCommande.setPersonne(userAuthentication.getPersonne());
 		service.addObject(bonCommande);
 		for (LigneCommande objetLigneCommande:listObject) {

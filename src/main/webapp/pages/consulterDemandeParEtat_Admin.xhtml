@@ -17,16 +17,16 @@
 				<fieldset>
 				 <h:panelGrid columns="4" cellpadding="15"  style="margin: 15px;" >
 					<p:outputLabel for="cb_etat_demande" value="Etat Demande:"/>
-						<p:selectOneMenu id="cb_etat_demande"  value="#{traitementDemandeController.idEtatDemande}">
+						<p:selectOneMenu id="cb_etat_demande"  value="#{traitementDemandeController_Admin.idEtatDemande}">
 						<f:selectItem itemLabel="Selectionnez" itemValue="" />
-						<f:selectItems value="#{traitementDemandeController.listEtatDemande}" var="tata" itemLabel="#{tata.libEtatDemande}" itemValue="#{tata.idEtatDemande}"></f:selectItems>
+						<f:selectItems value="#{traitementDemandeController_Admin.listEtatDemande}" var="tata" itemLabel="#{tata.libEtatDemande}" itemValue="#{tata.idEtatDemande}"></f:selectItems>
 					</p:selectOneMenu>	
-				<p:commandButton value="Rechercher" actionListener="#{traitementDemandeController.traiterDemande}" update="form"></p:commandButton>
+				<p:commandButton value="Rechercher" actionListener="#{traitementDemandeController_Admin.traiterDemande}" update="form"></p:commandButton>
 				</h:panelGrid>
 				</fieldset>
 				</div>
 					<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
-						<p:dataTable id="table" var="var" value="#{traitementDemandeController.listeDemande }"  >
+						<p:dataTable id="table" var="var" value="#{traitementDemandeController_Admin.listeDemande }"  >
  							<f:facet name="header">LISTE DES DEMANDES</f:facet>
   								  <!--   <p:ajax event="rowSelect" process="@this"  update="form" listener="#{traitementDemandeController.selectionnerLigne}"></p:ajax>-->
    		
@@ -55,7 +55,7 @@
                       				<br/>
 										<p:toolbar >
 											<f:facet name="left">
-											<p:commandButton value="Annuler"  action="#{traitementDemandeController.annuler}" update="form" ></p:commandButton>
+											<p:commandButton value="Annuler"  action="#{traitementDemandeController_Admin.annuler}" update="form" ></p:commandButton>
 											<p:commandButton value="Imprimer" >
 											<p:printer target="table"></p:printer>
 											</p:commandButton>

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "caracteristique", catalog = "ismistock_bd")
 public class Caracteristique implements java.io.Serializable {
 
-	private int idCaracteristique;
+	private Integer idCaracteristique;
 	private String codeCaracteristique;
 	private String libCaracteristique;
 	private String descriptionCaracteristique;
@@ -29,13 +30,8 @@ public class Caracteristique implements java.io.Serializable {
 	public Caracteristique() {
 	}
 
-	public Caracteristique(int idCaracteristique) {
-		this.idCaracteristique = idCaracteristique;
-	}
-
-	public Caracteristique(int idCaracteristique, String codeCaracteristique, String libCaracteristique,
-			String descriptionCaracteristique, Set<Valeur> valeurs) {
-		this.idCaracteristique = idCaracteristique;
+	public Caracteristique(String codeCaracteristique, String libCaracteristique, String descriptionCaracteristique,
+			Set<Valeur> valeurs) {
 		this.codeCaracteristique = codeCaracteristique;
 		this.libCaracteristique = libCaracteristique;
 		this.descriptionCaracteristique = descriptionCaracteristique;
@@ -43,14 +39,14 @@ public class Caracteristique implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_CARACTERISTIQUE", unique = true, nullable = false)
-	public int getIdCaracteristique() {
+	public Integer getIdCaracteristique() {
 		return this.idCaracteristique;
 	}
 
-	public void setIdCaracteristique(int idCaracteristique) {
+	public void setIdCaracteristique(Integer idCaracteristique) {
 		this.idCaracteristique = idCaracteristique;
 	}
 

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "source_financement", catalog = "ismistock_bd")
 public class SourceFinancement implements java.io.Serializable {
 
-	private int idSource;
+	private Integer idSource;
 	private String codeSource;
 	private String libSource;
 	private String descriptionSource;
@@ -29,13 +30,7 @@ public class SourceFinancement implements java.io.Serializable {
 	public SourceFinancement() {
 	}
 
-	public SourceFinancement(int idSource) {
-		this.idSource = idSource;
-	}
-
-	public SourceFinancement(int idSource, String codeSource, String libSource, String descriptionSource,
-			Set<Entree> entrees) {
-		this.idSource = idSource;
+	public SourceFinancement(String codeSource, String libSource, String descriptionSource, Set<Entree> entrees) {
 		this.codeSource = codeSource;
 		this.libSource = libSource;
 		this.descriptionSource = descriptionSource;
@@ -43,14 +38,14 @@ public class SourceFinancement implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_SOURCE", unique = true, nullable = false)
-	public int getIdSource() {
+	public Integer getIdSource() {
 		return this.idSource;
 	}
 
-	public void setIdSource(int idSource) {
+	public void setIdSource(Integer idSource) {
 		this.idSource = idSource;
 	}
 

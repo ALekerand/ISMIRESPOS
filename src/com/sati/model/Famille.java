@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "famille", catalog = "ismistock_bd")
 public class Famille implements java.io.Serializable {
 
-	private int idFamille;
+	private Integer idFamille;
 	private String codeFamille;
 	private String libFamille;
 	private String descriptionFamille;
@@ -26,13 +28,7 @@ public class Famille implements java.io.Serializable {
 	public Famille() {
 	}
 
-	public Famille(int idFamille) {
-		this.idFamille = idFamille;
-	}
-
-	public Famille(int idFamille, String codeFamille, String libFamille, String descriptionFamille,
-			Set<Materiel> materiels) {
-		this.idFamille = idFamille;
+	public Famille(String codeFamille, String libFamille, String descriptionFamille, Set<Materiel> materiels) {
 		this.codeFamille = codeFamille;
 		this.libFamille = libFamille;
 		this.descriptionFamille = descriptionFamille;
@@ -40,13 +36,14 @@ public class Famille implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_FAMILLE", unique = true, nullable = false)
-	public int getIdFamille() {
+	public Integer getIdFamille() {
 		return this.idFamille;
 	}
 
-	public void setIdFamille(int idFamille) {
+	public void setIdFamille(Integer idFamille) {
 		this.idFamille = idFamille;
 	}
 

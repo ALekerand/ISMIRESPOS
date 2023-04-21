@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +34,7 @@ public class Personne implements java.io.Serializable {
 	private String nomPersonne;
 	private String prenomsPersonne;
 	private Set<Entree> entrees = new HashSet<Entree>(0);
+	private Set<Bonlivraison> bonlivraisons = new HashSet<Bonlivraison>(0);
 	private Set<Sortie> sorties = new HashSet<Sortie>(0);
 	private Set<UserAuthentication> userAuthentications = new HashSet<UserAuthentication>(0);
 	private Set<Boncommande> boncommandes = new HashSet<Boncommande>(0);
@@ -47,7 +48,8 @@ public class Personne implements java.io.Serializable {
 
 	public Personne(Entite entite, Fonction fonction, UserAuthentication userAuthentication, String codeEntite,
 			String telephone, String email, String nomPersonne, String prenomsPersonne, Set<Entree> entrees,
-			Set<Sortie> sorties, Set<UserAuthentication> userAuthentications, Set<Boncommande> boncommandes) {
+			Set<Bonlivraison> bonlivraisons, Set<Sortie> sorties, Set<UserAuthentication> userAuthentications,
+			Set<Boncommande> boncommandes) {
 		this.entite = entite;
 		this.fonction = fonction;
 		this.userAuthentication = userAuthentication;
@@ -57,6 +59,7 @@ public class Personne implements java.io.Serializable {
 		this.nomPersonne = nomPersonne;
 		this.prenomsPersonne = prenomsPersonne;
 		this.entrees = entrees;
+		this.bonlivraisons = bonlivraisons;
 		this.sorties = sorties;
 		this.userAuthentications = userAuthentications;
 		this.boncommandes = boncommandes;
@@ -157,6 +160,15 @@ public class Personne implements java.io.Serializable {
 
 	public void setEntrees(Set<Entree> entrees) {
 		this.entrees = entrees;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personne")
+	public Set<Bonlivraison> getBonlivraisons() {
+		return this.bonlivraisons;
+	}
+
+	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
+		this.bonlivraisons = bonlivraisons;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personne")

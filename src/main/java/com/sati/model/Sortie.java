@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 � 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "sortie", catalog = "ismistock_bd")
 public class Sortie implements java.io.Serializable {
 
-	private int idSortie;
+	private Integer idSortie;
 	private Demande demande;
 	private Personne personne;
 	private String codeSortie;
@@ -36,16 +37,13 @@ public class Sortie implements java.io.Serializable {
 	public Sortie() {
 	}
 
-	public Sortie(int idSortie, Demande demande, Personne personne, Date dateEnregSortie) {
-		this.idSortie = idSortie;
+	public Sortie(Demande demande, Personne personne) {
 		this.demande = demande;
 		this.personne = personne;
-		this.dateEnregSortie = dateEnregSortie;
 	}
 
-	public Sortie(int idSortie, Demande demande, Personne personne, String codeSortie, Date dateSortie,
-			Date dateEnregSortie, Set<Demande> demandes) {
-		this.idSortie = idSortie;
+	public Sortie(Demande demande, Personne personne, String codeSortie, Date dateSortie, Date dateEnregSortie,
+			Set<Demande> demandes) {
 		this.demande = demande;
 		this.personne = personne;
 		this.codeSortie = codeSortie;
@@ -55,18 +53,18 @@ public class Sortie implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_SORTIE", unique = true, nullable = false)
-	public int getIdSortie() {
+	public Integer getIdSortie() {
 		return this.idSortie;
 	}
 
-	public void setIdSortie(int idSortie) {
+	public void setIdSortie(Integer idSortie) {
 		this.idSortie = idSortie;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_DEMANDE", nullable = false)
 	public Demande getDemande() {
 		return this.demande;
@@ -76,7 +74,7 @@ public class Sortie implements java.io.Serializable {
 		this.demande = demande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -106,7 +104,7 @@ public class Sortie implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREG_SORTIE", nullable = false, length = 19)
+	@Column(name = "DATE_ENREG_SORTIE", length = 19)
 	public Date getDateEnregSortie() {
 		return this.dateEnregSortie;
 	}

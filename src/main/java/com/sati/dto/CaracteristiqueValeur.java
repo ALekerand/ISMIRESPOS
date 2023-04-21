@@ -1,8 +1,6 @@
 package com.sati.dto;
 
 import com.sati.model.Caracteristique;
-import com.sati.model.Materiel;
-import com.sati.model.Valeur;
 
 public class CaracteristiqueValeur {
 	private Caracteristique caracteristique;

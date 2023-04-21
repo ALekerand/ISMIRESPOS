@@ -57,7 +57,7 @@ public class MagasinController {
 	}
 
 	public void annuler() {
-		this.magasin.setNomMagasion(null);
+		this.magasin.setNomMagasin(null);
 		this.magasin.setTelephoneMagasin(null);
 		this.btnModifier.setDisabled(true);
 		this.btnEnregistrer.setDisabled(false);

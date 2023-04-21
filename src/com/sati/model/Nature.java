@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "nature", catalog = "ismistock_bd")
 public class Nature implements java.io.Serializable {
 
-	private int idNature;
+	private Integer idNature;
 	private String codeNature;
 	private String libNature;
 	private String descriptionNature;
@@ -26,13 +28,7 @@ public class Nature implements java.io.Serializable {
 	public Nature() {
 	}
 
-	public Nature(int idNature) {
-		this.idNature = idNature;
-	}
-
-	public Nature(int idNature, String codeNature, String libNature, String descriptionNature,
-			Set<Materiel> materiels) {
-		this.idNature = idNature;
+	public Nature(String codeNature, String libNature, String descriptionNature, Set<Materiel> materiels) {
 		this.codeNature = codeNature;
 		this.libNature = libNature;
 		this.descriptionNature = descriptionNature;
@@ -40,13 +36,14 @@ public class Nature implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_NATURE", unique = true, nullable = false)
-	public int getIdNature() {
+	public Integer getIdNature() {
 		return this.idNature;
 	}
 
-	public void setIdNature(int idNature) {
+	public void setIdNature(Integer idNature) {
 		this.idNature = idNature;
 	}
 

@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "etat_demande", catalog = "ismistock_bd")
 public class EtatDemande implements java.io.Serializable {
 
-	private int idEtatDemande;
+	private Integer idEtatDemande;
 	private String codeEtatDemande;
 	private String libEtatDemande;
 	private Set<Demande> demandes = new HashSet<Demande>(0);
@@ -25,25 +27,21 @@ public class EtatDemande implements java.io.Serializable {
 	public EtatDemande() {
 	}
 
-	public EtatDemande(int idEtatDemande) {
-		this.idEtatDemande = idEtatDemande;
-	}
-
-	public EtatDemande(int idEtatDemande, String codeEtatDemande, String libEtatDemande, Set<Demande> demandes) {
-		this.idEtatDemande = idEtatDemande;
+	public EtatDemande(String codeEtatDemande, String libEtatDemande, Set<Demande> demandes) {
 		this.codeEtatDemande = codeEtatDemande;
 		this.libEtatDemande = libEtatDemande;
 		this.demandes = demandes;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_ETAT_DEMANDE", unique = true, nullable = false)
-	public int getIdEtatDemande() {
+	public Integer getIdEtatDemande() {
 		return this.idEtatDemande;
 	}
 
-	public void setIdEtatDemande(int idEtatDemande) {
+	public void setIdEtatDemande(Integer idEtatDemande) {
 		this.idEtatDemande = idEtatDemande;
 	}
 

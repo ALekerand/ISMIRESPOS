@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "user_authentication", catalog = "ismistock_bd")
 public class UserAuthentication implements java.io.Serializable {
 
-	private int userId;
+	private Integer userId;
 	private Personne personne;
 	private String username;
 	private String password;
@@ -33,14 +34,12 @@ public class UserAuthentication implements java.io.Serializable {
 	public UserAuthentication() {
 	}
 
-	public UserAuthentication(int userId, Personne personne) {
-		this.userId = userId;
+	public UserAuthentication(Personne personne) {
 		this.personne = personne;
 	}
 
-	public UserAuthentication(int userId, Personne personne, String username, String password, Boolean enabled,
+	public UserAuthentication(Personne personne, String username, String password, Boolean enabled,
 			Set<Personne> personnes, Set<UserAuthorization> userAuthorizations) {
-		this.userId = userId;
 		this.personne = personne;
 		this.username = username;
 		this.password = password;
@@ -50,18 +49,18 @@ public class UserAuthentication implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "USER_ID", unique = true, nullable = false)
-	public int getUserId() {
+	public Integer getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;

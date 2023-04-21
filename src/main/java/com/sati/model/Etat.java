@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "etat", catalog = "ismistock_bd")
 public class Etat implements java.io.Serializable {
 
-	private int idEtat;
+	private Integer idEtat;
 	private String codeEtat;
 	private String libEtat;
 	private Set<Diagnostique> diagnostiques = new HashSet<Diagnostique>(0);
@@ -28,26 +29,21 @@ public class Etat implements java.io.Serializable {
 	public Etat() {
 	}
 
-	public Etat(int idEtat) {
-		this.idEtat = idEtat;
-	}
-
-	public Etat(int idEtat, String codeEtat, String libEtat, Set<Diagnostique> diagnostiques) {
-		this.idEtat = idEtat;
+	public Etat(String codeEtat, String libEtat, Set<Diagnostique> diagnostiques) {
 		this.codeEtat = codeEtat;
 		this.libEtat = libEtat;
 		this.diagnostiques = diagnostiques;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_ETAT", unique = true, nullable = false)
-	public int getIdEtat() {
+	public Integer getIdEtat() {
 		return this.idEtat;
 	}
 
-	public void setIdEtat(int idEtat) {
+	public void setIdEtat(Integer idEtat) {
 		this.idEtat = idEtat;
 	}
 

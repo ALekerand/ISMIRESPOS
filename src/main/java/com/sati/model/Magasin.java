@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,8 +21,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "magasin", catalog = "ismistock_bd")
 public class Magasin implements java.io.Serializable {
 
-	private int idMagasin;
-	private String nomMagasion;
+	private Integer idMagasin;
+	private String nomMagasin;
 	private String telephoneMagasin;
 	private String codeMagasin;
 	private Set<Materiel> materiels = new HashSet<Materiel>(0);
@@ -29,38 +30,32 @@ public class Magasin implements java.io.Serializable {
 	public Magasin() {
 	}
 
-	public Magasin(int idMagasin) {
-		this.idMagasin = idMagasin;
-	}
-
-	public Magasin(int idMagasin, String nomMagasion, String telephoneMagasin, String codeMagasin,
-			Set<Materiel> materiels) {
-		this.idMagasin = idMagasin;
-		this.nomMagasion = nomMagasion;
+	public Magasin(String nomMagasin, String telephoneMagasin, String codeMagasin, Set<Materiel> materiels) {
+		this.nomMagasin = nomMagasin;
 		this.telephoneMagasin = telephoneMagasin;
 		this.codeMagasin = codeMagasin;
 		this.materiels = materiels;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_MAGASIN", unique = true, nullable = false)
-	public int getIdMagasin() {
+	public Integer getIdMagasin() {
 		return this.idMagasin;
 	}
 
-	public void setIdMagasin(int idMagasin) {
+	public void setIdMagasin(Integer idMagasin) {
 		this.idMagasin = idMagasin;
 	}
 
-	@Column(name = "NOM_MAGASION", length = 25)
-	public String getNomMagasion() {
-		return this.nomMagasion;
+	@Column(name = "NOM_MAGASIN", length = 25)
+	public String getNomMagasin() {
+		return this.nomMagasin;
 	}
 
-	public void setNomMagasion(String nomMagasion) {
-		this.nomMagasion = nomMagasion;
+	public void setNomMagasin(String nomMagasin) {
+		this.nomMagasin = nomMagasin;
 	}
 
 	@Column(name = "TELEPHONE_MAGASIN", length = 10)

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "fournisseur", catalog = "ismistock_bd")
 public class Fournisseur implements java.io.Serializable {
 
-	private int idFournisseur;
+	private Integer idFournisseur;
 	private String codeFournisseur;
 	private String nomFournisseur;
 	private String nccFournisseur;
@@ -31,13 +32,8 @@ public class Fournisseur implements java.io.Serializable {
 	public Fournisseur() {
 	}
 
-	public Fournisseur(int idFournisseur) {
-		this.idFournisseur = idFournisseur;
-	}
-
-	public Fournisseur(int idFournisseur, String codeFournisseur, String nomFournisseur, String nccFournisseur,
-			String adresseFournisseur, String telephoneFournisseur, Set<Entree> entrees) {
-		this.idFournisseur = idFournisseur;
+	public Fournisseur(String codeFournisseur, String nomFournisseur, String nccFournisseur, String adresseFournisseur,
+			String telephoneFournisseur, Set<Entree> entrees) {
 		this.codeFournisseur = codeFournisseur;
 		this.nomFournisseur = nomFournisseur;
 		this.nccFournisseur = nccFournisseur;
@@ -47,14 +43,14 @@ public class Fournisseur implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_FOURNISSEUR", unique = true, nullable = false)
-	public int getIdFournisseur() {
+	public Integer getIdFournisseur() {
 		return this.idFournisseur;
 	}
 
-	public void setIdFournisseur(int idFournisseur) {
+	public void setIdFournisseur(Integer idFournisseur) {
 		this.idFournisseur = idFournisseur;
 	}
 

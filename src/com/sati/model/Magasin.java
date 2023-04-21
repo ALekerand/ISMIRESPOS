@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "magasin", catalog = "ismistock_bd")
 public class Magasin implements java.io.Serializable {
 
-	private int idMagasin;
+	private Integer idMagasin;
 	private String nomMagasin;
 	private String telephoneMagasin;
 	private String codeMagasin;
@@ -26,13 +28,7 @@ public class Magasin implements java.io.Serializable {
 	public Magasin() {
 	}
 
-	public Magasin(int idMagasin) {
-		this.idMagasin = idMagasin;
-	}
-
-	public Magasin(int idMagasin, String nomMagasin, String telephoneMagasin, String codeMagasin,
-			Set<Materiel> materiels) {
-		this.idMagasin = idMagasin;
+	public Magasin(String nomMagasin, String telephoneMagasin, String codeMagasin, Set<Materiel> materiels) {
 		this.nomMagasin = nomMagasin;
 		this.telephoneMagasin = telephoneMagasin;
 		this.codeMagasin = codeMagasin;
@@ -40,13 +36,14 @@ public class Magasin implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_MAGASIN", unique = true, nullable = false)
-	public int getIdMagasin() {
+	public Integer getIdMagasin() {
 		return this.idMagasin;
 	}
 
-	public void setIdMagasin(int idMagasin) {
+	public void setIdMagasin(Integer idMagasin) {
 		this.idMagasin = idMagasin;
 	}
 

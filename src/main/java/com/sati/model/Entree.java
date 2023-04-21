@@ -1,11 +1,12 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:56:19 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "entree", catalog = "ismistock_bd")
 public class Entree implements java.io.Serializable {
 
-	private int idEntree;
+	private Integer idEntree;
 	private Fournisseur fournisseur;
 	private Materiel materiel;
 	private Personne personne;
@@ -35,19 +36,14 @@ public class Entree implements java.io.Serializable {
 	public Entree() {
 	}
 
-	public Entree(int idEntree, Materiel materiel, Personne personne, SourceFinancement sourceFinancement,
-			Date dateEnregistrement) {
-		this.idEntree = idEntree;
+	public Entree(Materiel materiel, Personne personne, SourceFinancement sourceFinancement) {
 		this.materiel = materiel;
 		this.personne = personne;
 		this.sourceFinancement = sourceFinancement;
-		this.dateEnregistrement = dateEnregistrement;
 	}
 
-	public Entree(int idEntree, Fournisseur fournisseur, Materiel materiel, Personne personne,
-			SourceFinancement sourceFinancement, String codeEntre, Date dateEntree, Date dateEnregistrement,
-			Integer qteEntree) {
-		this.idEntree = idEntree;
+	public Entree(Fournisseur fournisseur, Materiel materiel, Personne personne, SourceFinancement sourceFinancement,
+			String codeEntre, Date dateEntree, Date dateEnregistrement, Integer qteEntree) {
 		this.fournisseur = fournisseur;
 		this.materiel = materiel;
 		this.personne = personne;
@@ -59,18 +55,18 @@ public class Entree implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_ENTREE", unique = true, nullable = false)
-	public int getIdEntree() {
+	public Integer getIdEntree() {
 		return this.idEntree;
 	}
 
-	public void setIdEntree(int idEntree) {
+	public void setIdEntree(Integer idEntree) {
 		this.idEntree = idEntree;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_FOURNISSEUR")
 	public Fournisseur getFournisseur() {
 		return this.fournisseur;
@@ -80,7 +76,7 @@ public class Entree implements java.io.Serializable {
 		this.fournisseur = fournisseur;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;
@@ -90,7 +86,7 @@ public class Entree implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -100,7 +96,7 @@ public class Entree implements java.io.Serializable {
 		this.personne = personne;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SOURCE", nullable = false)
 	public SourceFinancement getSourceFinancement() {
 		return this.sourceFinancement;
@@ -130,7 +126,7 @@ public class Entree implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREGISTREMENT", nullable = false, length = 19)
+	@Column(name = "DATE_ENREGISTREMENT", length = 19)
 	public Date getDateEnregistrement() {
 		return this.dateEnregistrement;
 	}

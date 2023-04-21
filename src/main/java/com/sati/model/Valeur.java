@@ -1,10 +1,11 @@
 package com.sati.model;
-// Generated 18 mai 2022 à 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,39 +20,36 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "valeur", catalog = "ismistock_bd")
 public class Valeur implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Caracteristique caracteristique;
 	private Materiel materiel;
-	private String code;
+	private String codeValeur;
 	private String valeurCaracteristique;
 
 	public Valeur() {
 	}
 
-	public Valeur(int id, Caracteristique caracteristique, Materiel materiel) {
-		this.id = id;
+	public Valeur(Caracteristique caracteristique, Materiel materiel) {
 		this.caracteristique = caracteristique;
 		this.materiel = materiel;
 	}
 
-	public Valeur(int id, Caracteristique caracteristique, Materiel materiel, String code,
-			String valeurCaracteristique) {
-		this.id = id;
+	public Valeur(Caracteristique caracteristique, Materiel materiel, String codeValeur, String valeurCaracteristique) {
 		this.caracteristique = caracteristique;
 		this.materiel = materiel;
-		this.code = code;
+		this.codeValeur = codeValeur;
 		this.valeurCaracteristique = valeurCaracteristique;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID", unique = true, nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -75,13 +73,13 @@ public class Valeur implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@Column(name = "CODE", length = 10)
-	public String getCode() {
-		return this.code;
+	@Column(name = "CODE_VALEUR", length = 10)
+	public String getCodeValeur() {
+		return this.codeValeur;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCodeValeur(String codeValeur) {
+		this.codeValeur = codeValeur;
 	}
 
 	@Column(name = "VALEUR_CARACTERISTIQUE", length = 25)

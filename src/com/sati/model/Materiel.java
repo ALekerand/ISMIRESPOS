@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "materiel", catalog = "ismistock_bd")
 public class Materiel implements java.io.Serializable {
 
-	private int idMateriel;
+	private Integer idMateriel;
 	private Famille famille;
 	private Magasin magasin;
 	private Nature nature;
@@ -38,18 +40,16 @@ public class Materiel implements java.io.Serializable {
 	public Materiel() {
 	}
 
-	public Materiel(int idMateriel, Famille famille, Magasin magasin, Nature nature) {
-		this.idMateriel = idMateriel;
+	public Materiel(Famille famille, Magasin magasin, Nature nature) {
 		this.famille = famille;
 		this.magasin = magasin;
 		this.nature = nature;
 	}
 
-	public Materiel(int idMateriel, Famille famille, Magasin magasin, Nature nature, String codeMateriel,
-			String nomMateriel, String descriptionMateriel, Integer stockActuel, Integer stockAlerte,
-			Set<Valeur> valeurs, Set<LigneCommande> ligneCommandes, Set<Demande> demandes, Set<Entree> entrees,
-			Set<Parcours> parcourses, Set<Diagnostique> diagnostiques) {
-		this.idMateriel = idMateriel;
+	public Materiel(Famille famille, Magasin magasin, Nature nature, String codeMateriel, String nomMateriel,
+			String descriptionMateriel, Integer stockActuel, Integer stockAlerte, Set<Valeur> valeurs,
+			Set<LigneCommande> ligneCommandes, Set<Demande> demandes, Set<Entree> entrees, Set<Parcours> parcourses,
+			Set<Diagnostique> diagnostiques) {
 		this.famille = famille;
 		this.magasin = magasin;
 		this.nature = nature;
@@ -67,13 +67,14 @@ public class Materiel implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_MATERIEL", unique = true, nullable = false)
-	public int getIdMateriel() {
+	public Integer getIdMateriel() {
 		return this.idMateriel;
 	}
 
-	public void setIdMateriel(int idMateriel) {
+	public void setIdMateriel(Integer idMateriel) {
 		this.idMateriel = idMateriel;
 	}
 

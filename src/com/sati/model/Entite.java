@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -18,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "entite", catalog = "ismistock_bd")
 public class Entite implements java.io.Serializable {
 
-	private int idEntite;
+	private Integer idEntite;
 	private String codeEntite;
 	private String telephone;
 	private String email;
@@ -29,13 +31,8 @@ public class Entite implements java.io.Serializable {
 	public Entite() {
 	}
 
-	public Entite(int idEntite) {
-		this.idEntite = idEntite;
-	}
-
-	public Entite(int idEntite, String codeEntite, String telephone, String email, Personne personne, Service service,
+	public Entite(String codeEntite, String telephone, String email, Personne personne, Service service,
 			Set<Demande> demandes) {
-		this.idEntite = idEntite;
 		this.codeEntite = codeEntite;
 		this.telephone = telephone;
 		this.email = email;
@@ -45,13 +42,14 @@ public class Entite implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_ENTITE", unique = true, nullable = false)
-	public int getIdEntite() {
+	public Integer getIdEntite() {
 		return this.idEntite;
 	}
 
-	public void setIdEntite(int idEntite) {
+	public void setIdEntite(Integer idEntite) {
 		this.idEntite = idEntite;
 	}
 

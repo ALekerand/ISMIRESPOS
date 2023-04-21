@@ -1,10 +1,12 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "parcours", catalog = "ismistock_bd")
 public class Parcours implements java.io.Serializable {
 
-	private int idPacours;
+	private Integer idPacours;
 	private Materiel materiel;
 	private Service service;
 	private String codeParcours;
@@ -29,15 +31,12 @@ public class Parcours implements java.io.Serializable {
 	public Parcours() {
 	}
 
-	public Parcours(int idPacours, Materiel materiel, Service service) {
-		this.idPacours = idPacours;
+	public Parcours(Materiel materiel, Service service) {
 		this.materiel = materiel;
 		this.service = service;
 	}
 
-	public Parcours(int idPacours, Materiel materiel, Service service, String codeParcours, Date datePcours,
-			Date dateEnregParcours) {
-		this.idPacours = idPacours;
+	public Parcours(Materiel materiel, Service service, String codeParcours, Date datePcours, Date dateEnregParcours) {
 		this.materiel = materiel;
 		this.service = service;
 		this.codeParcours = codeParcours;
@@ -46,13 +45,14 @@ public class Parcours implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_PACOURS", unique = true, nullable = false)
-	public int getIdPacours() {
+	public Integer getIdPacours() {
 		return this.idPacours;
 	}
 
-	public void setIdPacours(int idPacours) {
+	public void setIdPacours(Integer idPacours) {
 		this.idPacours = idPacours;
 	}
 

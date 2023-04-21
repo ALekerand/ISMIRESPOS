@@ -1,10 +1,11 @@
 package com.sati.model;
-// Generated 18 mai 2022 � 07:58:28 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "ligne_commande", catalog = "ismistock_bd")
 public class LigneCommande implements java.io.Serializable {
 
-	private int idLigneCommande;
+	private Integer idLigneCommande;
 	private Boncommande boncommande;
 	private Materiel materiel;
 	private String codeLigneCommande;
@@ -28,15 +29,13 @@ public class LigneCommande implements java.io.Serializable {
 	public LigneCommande() {
 	}
 
-	public LigneCommande(int idLigneCommande, Boncommande boncommande, Materiel materiel) {
-		this.idLigneCommande = idLigneCommande;
+	public LigneCommande(Boncommande boncommande, Materiel materiel) {
 		this.boncommande = boncommande;
 		this.materiel = materiel;
 	}
 
-	public LigneCommande(int idLigneCommande, Boncommande boncommande, Materiel materiel, String codeLigneCommande,
+	public LigneCommande(Boncommande boncommande, Materiel materiel, String codeLigneCommande,
 			Integer qteLigneCommande) {
-		this.idLigneCommande = idLigneCommande;
 		this.boncommande = boncommande;
 		this.materiel = materiel;
 		this.codeLigneCommande = codeLigneCommande;
@@ -44,18 +43,18 @@ public class LigneCommande implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
 	@Column(name = "ID_LIGNE_COMMANDE", unique = true, nullable = false)
-	public int getIdLigneCommande() {
+	public Integer getIdLigneCommande() {
 		return this.idLigneCommande;
 	}
 
-	public void setIdLigneCommande(int idLigneCommande) {
+	public void setIdLigneCommande(Integer idLigneCommande) {
 		this.idLigneCommande = idLigneCommande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_BON_COMMANDE", nullable = false)
 	public Boncommande getBoncommande() {
 		return this.boncommande;
@@ -65,7 +64,7 @@ public class LigneCommande implements java.io.Serializable {
 		this.boncommande = boncommande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;

@@ -99,7 +99,7 @@ public class MaterielController {
 		for (CaracteristiqueValeur caracteristiqueValeur : listCaracteristiqueValeur) {
 			if(caracteristiqueValeur.getValeurCaracteristique()!="") {
 				Valeur valeur = new Valeur();
-				valeur.setCode(genererCodeValeur());
+				valeur.setCodeValeur(genererCodeValeur());
 				valeur.setValeurCaracteristique(caracteristiqueValeur.getValeurCaracteristique());
 				valeur.setCaracteristique(caracteristiqueValeur.getCaracteristique());
 				valeur.setMateriel(materiel);

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,8 +7,11 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,40 +25,40 @@ import javax.persistence.TemporalType;
 @Table(name = "boncommande", catalog = "ismistock_bd")
 public class Boncommande implements java.io.Serializable {
 
-	private int idBonCommande;
+	private Integer idBonCommande;
 	private Personne personne;
 	private String codeBonCommande;
-	private Date date;
+	private Date dateBonCommande;
 	private String commentaireBonCommande;
 	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
+	private Set<Bonlivraison> bonlivraisons = new HashSet<Bonlivraison>(0);
 
 	public Boncommande() {
 	}
 
-	public Boncommande(int idBonCommande, Personne personne, Date date) {
-		this.idBonCommande = idBonCommande;
+	public Boncommande(Personne personne) {
 		this.personne = personne;
-		this.date = date;
 	}
 
-	public Boncommande(int idBonCommande, Personne personne, String codeBonCommande, Date date,
-			String commentaireBonCommande, Set<LigneCommande> ligneCommandes) {
-		this.idBonCommande = idBonCommande;
+	public Boncommande(Personne personne, String codeBonCommande, Date dateBonCommande, String commentaireBonCommande,
+			Set<LigneCommande> ligneCommandes, Set<Bonlivraison> bonlivraisons) {
 		this.personne = personne;
 		this.codeBonCommande = codeBonCommande;
-		this.date = date;
+		this.dateBonCommande = dateBonCommande;
 		this.commentaireBonCommande = commentaireBonCommande;
 		this.ligneCommandes = ligneCommandes;
+		this.bonlivraisons = bonlivraisons;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_BON_COMMANDE", unique = true, nullable = false)
-	public int getIdBonCommande() {
+	public Integer getIdBonCommande() {
 		return this.idBonCommande;
 	}
 
-	public void setIdBonCommande(int idBonCommande) {
+	public void setIdBonCommande(Integer idBonCommande) {
 		this.idBonCommande = idBonCommande;
 	}
 
@@ -79,13 +82,13 @@ public class Boncommande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE", nullable = false, length = 19)
-	public Date getDate() {
-		return this.date;
+	@Column(name = "DATE_BON_COMMANDE", length = 19)
+	public Date getDateBonCommande() {
+		return this.dateBonCommande;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateBonCommande(Date dateBonCommande) {
+		this.dateBonCommande = dateBonCommande;
 	}
 
 	@Column(name = "COMMENTAIRE_BON_COMMANDE", length = 65535)
@@ -104,6 +107,15 @@ public class Boncommande implements java.io.Serializable {
 
 	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
 		this.ligneCommandes = ligneCommandes;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "boncommandes")
+	public Set<Bonlivraison> getBonlivraisons() {
+		return this.bonlivraisons;
+	}
+
+	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
+		this.bonlivraisons = bonlivraisons;
 	}
 
 }

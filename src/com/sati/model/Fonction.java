@@ -1,11 +1,13 @@
 package com.sati.model;
-// Generated 13 juin 2022 à 11:48:42 by Hibernate Tools 4.3.5.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "fonction", catalog = "ismistock_bd")
 public class Fonction implements java.io.Serializable {
 
-	private int idFonction;
+	private Integer idFonction;
 	private String codeFonction;
 	private String libFonction;
 	private Set<Personne> personnes = new HashSet<Personne>(0);
@@ -25,25 +27,21 @@ public class Fonction implements java.io.Serializable {
 	public Fonction() {
 	}
 
-	public Fonction(int idFonction) {
-		this.idFonction = idFonction;
-	}
-
-	public Fonction(int idFonction, String codeFonction, String libFonction, Set<Personne> personnes) {
-		this.idFonction = idFonction;
+	public Fonction(String codeFonction, String libFonction, Set<Personne> personnes) {
 		this.codeFonction = codeFonction;
 		this.libFonction = libFonction;
 		this.personnes = personnes;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID_FONCTION", unique = true, nullable = false)
-	public int getIdFonction() {
+	public Integer getIdFonction() {
 		return this.idFonction;
 	}
 
-	public void setIdFonction(int idFonction) {
+	public void setIdFonction(Integer idFonction) {
 		this.idFonction = idFonction;
 	}
 

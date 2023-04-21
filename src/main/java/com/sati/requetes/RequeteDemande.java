@@ -21,14 +21,20 @@ public class RequeteDemande {
 	
 	
 	public List traiterEtatDemande() {
-		String query = "SELECT * FROM demande WHERE ID_ETAT_DEMANDE = 1";
+		String query = "SELECT `demande`.* FROM `demande` WHERE `demande`.`ID_ETAT_DEMANDE` = '1'";
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 		}
 
 	
-	public List afficherDemande(int idEtatDemande) {
+	public List afficherDemande_Admin(int idEtatDemande) {
 		String query = "SELECT * FROM demande WHERE ID_ETAT_DEMANDE = '"+idEtatDemande+"'";
+		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
+		return list;
+		}
+	
+	public List afficherDemande_Utilisateur(int idEtatDemande,int idEntite) {
+		String query = "SELECT * FROM demande WHERE ID_ETAT_DEMANDE = '"+idEtatDemande+"' AND ID_ENTITE = '"+idEntite+"' ";
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 		}
