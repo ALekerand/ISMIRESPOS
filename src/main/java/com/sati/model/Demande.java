@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
+// Generated 22 avr. 2023, 10:05:10 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "demande", catalog = "ismistock_bd")
 public class Demande implements java.io.Serializable {
 
-	private Date idDemande;
+	private Integer idDemande;
 	private Entite entite;
 	private EtatDemande etatDemande;
 	private Materiel materiel;
@@ -43,17 +44,15 @@ public class Demande implements java.io.Serializable {
 	public Demande() {
 	}
 
-	public Demande(Date idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel) {
-		this.idDemande = idDemande;
+	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiel = materiel;
 	}
 
-	public Demande(Date idDemande, Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie,
-			String codeDemande, String motifDemande, Integer qteDemande, Date dateDemande, Date dateTraitement,
-			String motifEtatDemande, Boolean etatReception, Date dateEtatReception, Set<Sortie> sorties) {
-		this.idDemande = idDemande;
+	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie, String codeDemande,
+			String motifDemande, Integer qteDemande, Date dateDemande, Date dateTraitement, String motifEtatDemande,
+			Boolean etatReception, Date dateEtatReception, Set<Sortie> sorties) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiel = materiel;
@@ -70,15 +69,14 @@ public class Demande implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
-	@GeneratedValue(generator="lekerand")
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "ID_DEMANDE", unique = true, nullable = false, length = 19)
-	public Date getIdDemande() {
+	@Column(name = "ID_DEMANDE", unique = true, nullable = false)
+	public Integer getIdDemande() {
 		return this.idDemande;
 	}
 
-	public void setIdDemande(Date idDemande) {
+	public void setIdDemande(Integer idDemande) {
 		this.idDemande = idDemande;
 	}
 

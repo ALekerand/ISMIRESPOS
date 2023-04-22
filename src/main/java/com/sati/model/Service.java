@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 19 avr. 2023, 22:54:33 by Hibernate Tools 4.3.6.Final
+// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +50,6 @@ public class Service implements java.io.Serializable {
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "entite"))
 	@Id
 	@GeneratedValue(generator = "generator")
-
 	@Column(name = "ID_ENTITE", unique = true, nullable = false)
 	public int getIdEntite() {
 		return this.idEntite;
