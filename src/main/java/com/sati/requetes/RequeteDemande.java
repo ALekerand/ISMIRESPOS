@@ -40,7 +40,7 @@ public class RequeteDemande {
 		}
 	
 	public List afficherDemandeAccepte(int idEntite) {
-		String query = "SELECT `demande`.* FROM `demande` WHERE `demande`.`ID_ETAT_DEMANDE` = '1' AND ID_ENTITE = '"+idEntite+"'";
+		String query = "SELECT `demande`.* FROM `demande` WHERE `demande`.`ID_ETAT_DEMANDE` = '2' AND ID_ENTITE = '"+idEntite+"'";
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 		}

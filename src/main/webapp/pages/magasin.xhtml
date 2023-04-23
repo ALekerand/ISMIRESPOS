@@ -23,7 +23,7 @@
 	<p:inputText id="input_code"   required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 
 	<p:outputLabel for="input_lib" value="Nom:"></p:outputLabel>
-	<p:inputText id="input_lib" value="#{magasinController.magasin.nomMagasion}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
+	<p:inputText id="input_lib" value="#{magasinController.magasin.nomMagasin}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>
 
 	<p:outputLabel for="input_tel" value="Téléphone:"></p:outputLabel>
 	<p:inputText id="input_tel" value="#{magasinController.magasin.telephoneMagasin}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>		
@@ -49,7 +49,7 @@
         </p:column>
         
         <p:column headerText="Nom magasin">
-        <h:outputText value="#{var.nomMagasion}"/>
+        <h:outputText value="#{var.nomMagasin}"/>
         </p:column>
         
         <p:column headerText="Téléphone">

@@ -20,9 +20,8 @@ public class ConsulterBonCommandeController {
 	String codeBonCommande;
 	
 	
-	
+	@SuppressWarnings("unchecked")
 	public void ChargerLigneCommane() {
-		
 		listLigneCommande = requeteBonCommande.consulterBonCommande(codeBonCommande);
 		
 	}

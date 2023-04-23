@@ -38,7 +38,7 @@
 					<p:outputLabel for="cb_magasin" value="Magasin:"/>
 						<p:selectOneMenu id="cb_magasin" required="true" value="#{materielController.idMagasin}">
 						<f:selectItem itemLabel="Selectionnez" itemValue="" />
-						<f:selectItems value="#{materielController.listMagasin}" var="tata" itemLabel="#{tata.nomMagasion}" itemValue="#{tata.idMagasin}"></f:selectItems>
+						<f:selectItems value="#{materielController.listMagasin}" var="tata" itemLabel="#{tata.nomMagasin}" itemValue="#{tata.idMagasin}"></f:selectItems>
 					</p:selectOneMenu>
 					
 					<p:outputLabel for="input_stockArl" value="Stock arlerte:"></p:outputLabel>

@@ -36,7 +36,7 @@ public class NatureController {
 	}
 
 	public void enregistrer() {
-		this.service.addObject(this.nature);
+		this.service.addObject(nature);
 		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
 		
@@ -50,7 +50,7 @@ public class NatureController {
 
 	public void info(String monMessage) {
 		FacesContext.getCurrentInstance().addMessage((String) null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", monMessage));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, monMessage,null));
 	}
 
 	public void error() {

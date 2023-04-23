@@ -35,7 +35,7 @@ public class FamilleController {
 
 	public void enregistrer() {
 		this.service.addObject(this.famille);
-		this.info("Eneregistrement effectué avec succ�s!");
+		this.info("Eneregistrement effectué avec succès!");
 		this.annuler();
 		
 	}

@@ -52,7 +52,8 @@ public class TraitementDemandeController_Utilisateur {
 		entite = (Entite) service.getObjectById(personne.getIdEntite(), "Entite");
 		idEntite = entite.getIdEntite();
 		listeDemande = requeteDemande.afficherDemande_Utilisateur(idEtatDemande,idEntite);
-		annuler();
+
+
 		
 	}
 	

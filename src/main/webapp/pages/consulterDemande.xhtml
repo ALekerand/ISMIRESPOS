@@ -45,12 +45,10 @@
           <p:column headerText="Etat" style="width:22%">
             <h:panelGrid columns="2"  >
                 <h:commandButton value="Valider" actionListener="#{traitementDemandeController_Admin.validerDemande}" update="form" >
-                <p:confirm header="confirmation" message="confirmez-vous valider la demande?"></p:confirm>
                   <f:setPropertyActionListener value="#{variable}" target="#{traitementDemandeController_Admin.selectedObject}"/>
                 </h:commandButton>
                 
                 <h:commandButton  value="Rejetter" actionListener="#{traitementDemandeController_Admin.rejeterDemande}" update="form" >
-                <p:confirm header="confirmation" message="confirmez-vous rejeter la demande?"></p:confirm>	
    		         <f:setPropertyActionListener value="#{variable}" target="#{traitementDemandeController_Admin.selectedObject}"/>
    		         </h:commandButton> 
                     </h:panelGrid>
