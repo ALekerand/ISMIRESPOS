@@ -20,7 +20,7 @@ import com.sati.service.Iservice;
 
 @Component
 @Scope("session")
-public class DemandeEtSortieController {
+public class AutoriserSortieController {
 	
 	@Autowired
 	RequeteDemande requeteDemande;

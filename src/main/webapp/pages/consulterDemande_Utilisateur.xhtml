@@ -15,18 +15,19 @@
 				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
 				<div style="font-size: 15px ;  padding-left: 20px; padding-right: 20px">
 				<fieldset>
+					<legend>Consultation des demandes par etat demande</legend>
 				 <h:panelGrid columns="4" cellpadding="15"  style="margin: 15px;" >
-					<p:outputLabel for="cb_etat_demande" value="Etat Demande:"/>
-						<p:selectOneMenu id="cb_etat_demande"  value="#{traitementDemandeController_Admin.idEtatDemande}">
+					<p:outputLabel for="cb_etat_demande" value="Choisir etat Demande:"/>
+						<p:selectOneMenu id="cb_etat_demande"  value="#{consulterDemandeController_Utilisateur.idEtatDemande}">
 						<f:selectItem itemLabel="Selectionnez" itemValue="" />
-						<f:selectItems value="#{traitementDemandeController_Admin.listEtatDemande}" var="tata" itemLabel="#{tata.libEtatDemande}" itemValue="#{tata.idEtatDemande}"></f:selectItems>
+						<f:selectItems value="#{consulterDemandeController_Utilisateur.listEtatDemande}" var="tata" itemLabel="#{tata.libEtatDemande}" itemValue="#{tata.idEtatDemande}"></f:selectItems>
 					</p:selectOneMenu>	
-				<p:commandButton value="Rechercher" actionListener="#{traitementDemandeController_Admin.traiterDemande}" update="form"></p:commandButton>
+				<p:commandButton value="Rechercher" actionListener="#{consulterDemandeController_Utilisateur.traiterDemande}" update="form"></p:commandButton>
 				</h:panelGrid>
 				</fieldset>
 				</div>
 					<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
-						<p:dataTable id="table" var="var" value="#{traitementDemandeController_Admin.listeDemande }"  >
+						<p:dataTable id="table" var="var" value="#{consulterDemandeController_Utilisateur.listeDemande }"  >
  							<f:facet name="header">LISTE DES DEMANDES</f:facet>
   								  <!--   <p:ajax event="rowSelect" process="@this"  update="form" listener="#{traitementDemandeController.selectionnerLigne}"></p:ajax>-->
    		
@@ -49,18 +50,12 @@
                                          <p:column headerText="Etat Demande">
                                        <h:outputText value="#{var.etatDemande.libEtatDemande}"/>
                                        </p:column>
-                                      
+                                       
+                                        <p:column headerText="Date Demande">
+                                       <h:outputText value="#{var.dateDemande}"/>
+                                       </p:column>
+                                     
                        </p:dataTable>
-                    
-                      				<br/>
-										<p:toolbar >
-											<f:facet name="left">
-											<p:commandButton value="Annuler"  action="#{traitementDemandeController_Admin.annuler}" update="form" ></p:commandButton>
-											<p:commandButton value="Imprimer" >
-											<p:printer target="table"></p:printer>
-											</p:commandButton>
-											</f:facet>
-										</p:toolbar>
 					 </div>
 				</h:form>
 			</ui:define>

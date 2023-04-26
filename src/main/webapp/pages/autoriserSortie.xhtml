@@ -9,11 +9,11 @@
 <body> 
 <ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
-			<form >
+		
 	<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
-						<p:dataTable  var="var" value="#{demandeEtSortieController.listObject}" selectionMode="single" selection="#{demandeEtSortieController.selectedDemande}" rowKey="#{var.idDemande}">
+						<p:dataTable  var="var" value="#{autoriserSortieController.listObject}" selectionMode="single" selection="#{autoriserSortieController.selectedDemande}" rowKey="#{var.idDemande}">
  							<f:facet name="header">LISTE DES DEMANDES</f:facet>
-  							 <p:ajax event="rowSelect" process="@this"   listener="#{demandeEtSortieController.selectionnerLigne}"></p:ajax>
+  							 <p:ajax event="rowSelect" process="@this"   listener="#{autoriserSortieController.selectionnerLigne}"></p:ajax>
    		
    										<p:column headerText="Demandeur">
      								    <h:outputText value="#{var.entite.personne.nomPersonne} "/>
@@ -47,7 +47,7 @@
                                        <h:outputText value="#{var.dateEtatReception}"/>
                                        </p:column>
                                          <p:column headerText="Autoriser sortie">
-                                     <p:commandButton value="Autoriser" actionListener="#{demandeEtSortieController.selectionnerLigne}"
+                                     <p:commandButton value="Autoriser" actionListener="#{autoriserSortieController.selectionnerLigne}"
                                      update=":dialogs" oncomplete="PF('sortieDemandeDialog').show()">
                                      <p:resetInput target=":dialogs"></p:resetInput>
                                      </p:commandButton>	
@@ -61,13 +61,13 @@
             <h:panelGrid columns="4" cellpadding="10">
                 
                         <p:outputLabel value="code sortie"></p:outputLabel>
-                        <p:inputText value="#{demandeEtSortieController.sortie.codeSortie}" ></p:inputText>
+                        <p:inputText value="#{autoriserSortieController.sortie.codeSortie}" ></p:inputText>
           
                        <p:outputLabel value="date enregistrement sortie"></p:outputLabel>
-                       <p:calendar value="#{demandeEtSortieController.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:calendar>
+                       <p:calendar value="#{autoriserSortieController.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:calendar>
                       
             <f:facet name="footer">
-                <p:commandButton value="Enregistrer"  actionListener="#{demandeEtSortieController.enregistrer}"/>
+                <p:commandButton value="Enregistrer"  actionListener="#{autoriserSortieController.enregistrer}"/>
             </f:facet>
               </h:panelGrid>
           
@@ -75,7 +75,7 @@
         </p:dialog>
 
     </h:form>
-    </form>
+   
    		</ui:define>
 	</ui:composition>
 </body> 
