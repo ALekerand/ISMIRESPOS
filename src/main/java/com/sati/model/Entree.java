@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
+// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -66,7 +66,7 @@ public class Entree implements java.io.Serializable {
 		this.idEntree = idEntree;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_FOURNISSEUR")
 	public Fournisseur getFournisseur() {
 		return this.fournisseur;
@@ -76,7 +76,7 @@ public class Entree implements java.io.Serializable {
 		this.fournisseur = fournisseur;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;
@@ -86,7 +86,7 @@ public class Entree implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -96,7 +96,7 @@ public class Entree implements java.io.Serializable {
 		this.personne = personne;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_SOURCE", nullable = false)
 	public SourceFinancement getSourceFinancement() {
 		return this.sourceFinancement;

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
+// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -80,7 +80,7 @@ public class Materiel implements java.io.Serializable {
 		this.idMateriel = idMateriel;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_FAMILLE", nullable = false)
 	public Famille getFamille() {
 		return this.famille;
@@ -90,7 +90,7 @@ public class Materiel implements java.io.Serializable {
 		this.famille = famille;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_MAGASIN", nullable = false)
 	public Magasin getMagasin() {
 		return this.magasin;
@@ -100,7 +100,7 @@ public class Materiel implements java.io.Serializable {
 		this.magasin = magasin;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_NATURE", nullable = false)
 	public Nature getNature() {
 		return this.nature;

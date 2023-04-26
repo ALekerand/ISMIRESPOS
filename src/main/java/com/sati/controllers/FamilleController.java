@@ -48,7 +48,7 @@ public class FamilleController {
 
 	public void info(String monMessage) {
 		FacesContext.getCurrentInstance().addMessage((String) null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", monMessage));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, monMessage, null));
 	}
 
 	public void error() {
@@ -104,6 +104,7 @@ public class FamilleController {
 		this.famille = famille;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Famille> getListFamille() {
 		listFamille = service.getObjects("Famille");
 		return listFamille;

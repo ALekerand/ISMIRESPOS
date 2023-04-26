@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 19 avr. 2023, 22:52:43 by Hibernate Tools 4.3.6.Final
+// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,12 +27,13 @@ import org.hibernate.annotations.GenericGenerator;
 public class Boncommande implements java.io.Serializable {
 
 	private Integer idBonCommande;
+	private Bonlivraison bonlivraison;
 	private Personne personne;
 	private String codeBonCommande;
 	private Date dateBonCommande;
 	private String commentaireBonCommande;
-	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
 	private Set<Bonlivraison> bonlivraisons = new HashSet<Bonlivraison>(0);
+	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
 
 	public Boncommande() {
 	}
@@ -42,14 +42,15 @@ public class Boncommande implements java.io.Serializable {
 		this.personne = personne;
 	}
 
-	public Boncommande(Personne personne, String codeBonCommande, Date dateBonCommande, String commentaireBonCommande,
-			Set<LigneCommande> ligneCommandes, Set<Bonlivraison> bonlivraisons) {
+	public Boncommande(Bonlivraison bonlivraison, Personne personne, String codeBonCommande, Date dateBonCommande,
+			String commentaireBonCommande, Set<Bonlivraison> bonlivraisons, Set<LigneCommande> ligneCommandes) {
+		this.bonlivraison = bonlivraison;
 		this.personne = personne;
 		this.codeBonCommande = codeBonCommande;
 		this.dateBonCommande = dateBonCommande;
 		this.commentaireBonCommande = commentaireBonCommande;
-		this.ligneCommandes = ligneCommandes;
 		this.bonlivraisons = bonlivraisons;
+		this.ligneCommandes = ligneCommandes;
 	}
 
 	@Id
@@ -64,7 +65,17 @@ public class Boncommande implements java.io.Serializable {
 		this.idBonCommande = idBonCommande;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_BON_LIVRAISON")
+	public Bonlivraison getBonlivraison() {
+		return this.bonlivraison;
+	}
+
+	public void setBonlivraison(Bonlivraison bonlivraison) {
+		this.bonlivraison = bonlivraison;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -103,21 +114,21 @@ public class Boncommande implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boncommande")
-	public Set<LigneCommande> getLigneCommandes() {
-		return this.ligneCommandes;
-	}
-
-	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
-		this.ligneCommandes = ligneCommandes;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "boncommandes")
 	public Set<Bonlivraison> getBonlivraisons() {
 		return this.bonlivraisons;
 	}
 
 	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
 		this.bonlivraisons = bonlivraisons;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boncommande")
+	public Set<LigneCommande> getLigneCommandes() {
+		return this.ligneCommandes;
+	}
+
+	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
+		this.ligneCommandes = ligneCommandes;
 	}
 
 }

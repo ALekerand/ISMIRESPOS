@@ -41,7 +41,7 @@
                                        <h:outputText value="#{var.dateDemande}"/>
                                        </p:column>
                                       
-                                       <p:column headerText="Date Demande">
+                                       <p:column headerText="Etat reception">
                                              <h:panelGrid columns="2"  >
                 <h:commandButton value="Receptionner" actionListener="#{afficherDemandeAccepterController.receptionner}" update="form" >
                   <f:setPropertyActionListener value="#{variable}" target="#{afficherDemandeAccepterController.selectedObject}"/>

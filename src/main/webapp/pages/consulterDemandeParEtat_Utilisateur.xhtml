@@ -54,18 +54,8 @@
                                         <p:column headerText="Date Demande">
                                        <h:outputText value="#{var.dateDemande}"/>
                                        </p:column>
-                                      
+                                     
                        </p:dataTable>
-                    
-                      				<br/>
-										<p:toolbar >
-											<f:facet name="left">
-											<p:commandButton value="Annuler"  action="#{traitementDemandeController_Utilisateur.annuler}" update="form" ></p:commandButton>
-											<p:commandButton value="Imprimer" >
-											<p:printer target="table"></p:printer>
-											</p:commandButton>
-											</f:facet>
-										</p:toolbar>
 					 </div>
 				</h:form>
 			</ui:define>

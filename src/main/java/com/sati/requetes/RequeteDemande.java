@@ -44,6 +44,12 @@ public class RequeteDemande {
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 		}
+	
+	public List afficherDemandeReceptionner() {
+		String query = "SELECT * FROM demande WHERE ID_ETAT_DEMANDE = '2' AND ETAT_RECEPTION = TRUE";
+		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
+		return list;
+	}
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
