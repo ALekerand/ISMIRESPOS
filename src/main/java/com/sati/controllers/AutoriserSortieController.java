@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.component.commandbutton.CommandButton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -36,9 +39,10 @@ public class AutoriserSortieController {
 	private List<Sortie> listSortie = new ArrayList<Sortie>();
 	private Demande selectedDemande = new Demande();
 	private int idDemande;
+	private Date dateEnregSortie;
 	
 	
-	
+	private CommandButton btnEnregistrer  = new CommandButton();
 	
 
 	@PostConstruct
@@ -69,7 +73,9 @@ public class AutoriserSortieController {
 		System.out.println("lancement");
 		sortie.setCodeSortie(genererCodeSortie());
 		sortie.setDateSortie(new Date());
-		sortie.setDateEnregSortie(new Date());
+		SimpleDateFormat formateurDate = new SimpleDateFormat("yyyy-MM-dd");
+		String date = formateurDate.format(dateEnregSortie);
+		sortie.setDateEnregSortie(dateEnregSortie);
 		sortie.setPersonne(userAuthentication.getPersonne());
 		sortie.setDemande(demande);
 		System.out.println("lancement");
@@ -78,8 +84,17 @@ public class AutoriserSortieController {
 		service.updateObject(demande);
 		sortie.setDemande(demande);
 		service.updateObject(sortie);
+		info("Enregistrement effectué avec succès!");
+	
 	}
 	
+	
+	
+	public void info(String monMessage) {
+		FacesContext.getCurrentInstance().addMessage((String) null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, monMessage, null));
+	}
+
 	public void selectionnerLigne() {
 		this.demande = this.selectedDemande;
 	}
@@ -151,6 +166,22 @@ public class AutoriserSortieController {
 
 	public void setSelectedDemande(Demande selectedDemande) {
 		this.selectedDemande = selectedDemande;
+	}
+
+	public Date getDateEnregSortie() {
+		return dateEnregSortie;
+	}
+
+	public void setDateEnregSortie(Date dateEnregSortie) {
+		this.dateEnregSortie = dateEnregSortie;
+	}
+
+	public CommandButton getBtnEnregistrer() {
+		return btnEnregistrer;
+	}
+
+	public void setBtnEnregistrer(CommandButton btnEnregistrer) {
+		this.btnEnregistrer = btnEnregistrer;
 	}
 
 

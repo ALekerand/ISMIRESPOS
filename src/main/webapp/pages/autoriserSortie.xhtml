@@ -9,7 +9,8 @@
 <body> 
 <ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
-		
+		<h:form id="form">
+		<p:messages autoUpdate="true" closable="true" showDetail="false"/>
 	<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
 						<p:dataTable  var="var" value="#{autoriserSortieController.listObject}" selectionMode="single" selection="#{autoriserSortieController.selectedDemande}" rowKey="#{var.idDemande}">
  							<f:facet name="header">LISTE DES DEMANDES</f:facet>
@@ -47,7 +48,7 @@
                                        <h:outputText value="#{var.dateEtatReception}"/>
                                        </p:column>
                                          <p:column headerText="Autoriser sortie">
-                                     <p:commandButton value="Autoriser" actionListener="#{autoriserSortieController.selectionnerLigne}"
+                                     <p:commandButton value="Autoriser sortie" actionListener="#{autoriserSortieController.selectionnerLigne}"
                               			 oncomplete="PF('sortieDemandeDialog').show()">
                                     <!--  <p:resetInput target=":dialogs"></p:resetInput> -->
                                      </p:commandButton>	
@@ -64,18 +65,27 @@
                         <p:inputText value="#{autoriserSortieController.sortie.codeSortie}" ></p:inputText>
           
                        <p:outputLabel value="date enregistrement sortie"></p:outputLabel>
-                        <p:datePicker id="date" value="#{etudiantControllers.sortie.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:datePicker>
+                        <p:datePicker id="date" value="#{autoriserSortieController.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:datePicker>
                       
             <f:facet name="footer">
-                <p:commandButton value="Enregistrer"  actionListener="#{autoriserSortieController.enregistrer}"/>
+                <p:commandButton value="Enregistrer"  action="#{autoriserSortieController.enregistrer}" binding="#{autoriserSortieController.btnEnregistrer}" update="form">
+                <p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm>
+                </p:commandButton>
             </f:facet>
               </h:panelGrid>
           
          
         </p:dialog>
 
-  
-   
+	   <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	   <p:commandButton value="Oui" type="button"
+	   styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+	   </p:commandButton>
+	   <p:commandButton value="Non" type="button"
+	   styleClass="ui-confirmdialog-no" icon="ui-icon-close" >
+	   </p:commandButton>
+	   </p:confirmDialog>
+   </h:form>
    		</ui:define>
 	</ui:composition>
 </body> 

@@ -40,13 +40,13 @@ public class RequeteDemande {
 		}
 	
 	public List afficherDemandeAccepte(int idEntite) {
-		String query = "SELECT `demande`.* FROM `demande` WHERE `demande`.`ID_ETAT_DEMANDE` = '2' AND ID_ENTITE = '"+idEntite+"' `demande`.`ETAT_RECEPTION` = FALSE";
+		String query = "SELECT * FROM `demande` WHERE ETAT_RECEPTION IS NULL AND`demande`.`ID_ETAT_DEMANDE` = '2' AND ID_ENTITE = '"+idEntite+"'";
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 		}
 	
 	public List afficherDemandeReceptionner() {
-		String query = "SELECT * FROM demande WHERE ID_ETAT_DEMANDE = '2' AND ETAT_RECEPTION = TRUE";
+		String query = "SELECT * FROM demande WHERE ID_SORTIE IS NULL AND ETAT_RECEPTION = TRUE AND ID_ETAT_DEMANDE = '2'";
 		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Demande.class).list();
 		return list;
 	}
