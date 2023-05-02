@@ -36,7 +36,7 @@ public class AutoriserSortieController {
 	private List<Sortie> listSortie = new ArrayList<Sortie>();
 	private Demande selectedDemande = new Demande();
 	private int idDemande;
-	private Date dateEnregSortie;
+	
 	
 	
 	
@@ -64,14 +64,16 @@ public class AutoriserSortieController {
 	}
 
 	
+	
 	public void enregistrer() {
+		System.out.println("lancement");
 		sortie.setCodeSortie(genererCodeSortie());
 		sortie.setDateSortie(new Date());
-		SimpleDateFormat formateurDate = new SimpleDateFormat("yyyy-MM-dd");
-		String date = formateurDate.format(dateEnregSortie);
-		sortie.setDateEnregSortie(dateEnregSortie);
+		sortie.setDateEnregSortie(new Date());
 		sortie.setPersonne(userAuthentication.getPersonne());
-		service.addObject(sortie);
+		sortie.setDemande(demande);
+		System.out.println("lancement");
+		this.service.addObject(this.sortie);
 		demande.setSortie(sortie);
 		service.updateObject(demande);
 		sortie.setDemande(demande);
@@ -151,13 +153,7 @@ public class AutoriserSortieController {
 		this.selectedDemande = selectedDemande;
 	}
 
-	public Date getDateEnregSortie() {
-		return dateEnregSortie;
-	}
 
-	public void setDateEnregSortie(Date dateEnregSortie) {
-		this.dateEnregSortie = dateEnregSortie;
-	}
 
 
 }

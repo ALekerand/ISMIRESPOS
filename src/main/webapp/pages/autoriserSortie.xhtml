@@ -48,15 +48,15 @@
                                        </p:column>
                                          <p:column headerText="Autoriser sortie">
                                      <p:commandButton value="Autoriser" actionListener="#{autoriserSortieController.selectionnerLigne}"
-                                     update=":dialogs" oncomplete="PF('sortieDemandeDialog').show()">
-                                     <p:resetInput target=":dialogs"></p:resetInput>
+                              			 oncomplete="PF('sortieDemandeDialog').show()">
+                                    <!--  <p:resetInput target=":dialogs"></p:resetInput> -->
                                      </p:commandButton>	
                                        </p:column>
                        </p:dataTable>
 					 </div>
 					 
-			<h:form id="dialogs">
-        <p:dialog header="validation de sortie" showEffect="fade" modal="true" widgetVar="sortieDemandeDialog"
+			
+        <p:dialog header="validation de sortie" showEffect="fade"  widgetVar="sortieDemandeDialog"
             responsive="true">
             <h:panelGrid columns="4" cellpadding="10">
                 
@@ -64,7 +64,7 @@
                         <p:inputText value="#{autoriserSortieController.sortie.codeSortie}" ></p:inputText>
           
                        <p:outputLabel value="date enregistrement sortie"></p:outputLabel>
-                       <p:calendar value="#{autoriserSortieController.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:calendar>
+                        <p:datePicker id="date" value="#{etudiantControllers.sortie.dateEnregSortie}" pattern="dd/MM/yyyy" locale="fr" navigator="true"></p:datePicker>
                       
             <f:facet name="footer">
                 <p:commandButton value="Enregistrer"  actionListener="#{autoriserSortieController.enregistrer}"/>
@@ -74,7 +74,7 @@
          
         </p:dialog>
 
-    </h:form>
+  
    
    		</ui:define>
 	</ui:composition>
