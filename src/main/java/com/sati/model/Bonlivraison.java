@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,23 +32,26 @@ public class Bonlivraison implements java.io.Serializable {
 	private String codeBonLivraison;
 	private Date dateLivraison;
 	private Date dateEnregistrementLivraison;
+	private String fichier;
 	private Set<Boncommande> boncommandes = new HashSet<Boncommande>(0);
 
 	public Bonlivraison() {
 	}
 
-	public Bonlivraison(Boncommande boncommande, Personne personne) {
+	public Bonlivraison(Boncommande boncommande, Personne personne, Date dateEnregistrementLivraison) {
 		this.boncommande = boncommande;
 		this.personne = personne;
+		this.dateEnregistrementLivraison = dateEnregistrementLivraison;
 	}
 
 	public Bonlivraison(Boncommande boncommande, Personne personne, String codeBonLivraison, Date dateLivraison,
-			Date dateEnregistrementLivraison, Set<Boncommande> boncommandes) {
+			Date dateEnregistrementLivraison, String fichier, Set<Boncommande> boncommandes) {
 		this.boncommande = boncommande;
 		this.personne = personne;
 		this.codeBonLivraison = codeBonLivraison;
 		this.dateLivraison = dateLivraison;
 		this.dateEnregistrementLivraison = dateEnregistrementLivraison;
+		this.fichier = fichier;
 		this.boncommandes = boncommandes;
 	}
 
@@ -104,13 +107,22 @@ public class Bonlivraison implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREGISTREMENT_LIVRAISON", length = 19)
+	@Column(name = "DATE_ENREGISTREMENT_LIVRAISON", nullable = false, length = 19)
 	public Date getDateEnregistrementLivraison() {
 		return this.dateEnregistrementLivraison;
 	}
 
 	public void setDateEnregistrementLivraison(Date dateEnregistrementLivraison) {
 		this.dateEnregistrementLivraison = dateEnregistrementLivraison;
+	}
+
+	@Column(name = "FICHIER", length = 200)
+	public String getFichier() {
+		return this.fichier;
+	}
+
+	public void setFichier(String fichier) {
+		this.fichier = fichier;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bonlivraison")

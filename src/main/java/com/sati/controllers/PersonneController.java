@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Entite;
-import com.sati.model.Etat;
-import com.sati.model.Famille;
 import com.sati.model.Fonction;
 import com.sati.model.Personne;
 import com.sati.model.UserAuthentication;
@@ -48,7 +46,6 @@ public class PersonneController {
 		//codePersonne();
 		genererCodeEntite();
 	}
-	
 	public void genererCodeEntite() {
 		String prefix="";
 		int nbEnregistrement = this.service.getObjects("Entite").size();

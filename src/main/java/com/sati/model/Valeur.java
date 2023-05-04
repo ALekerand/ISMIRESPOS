@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Valeur implements java.io.Serializable {
 	private Integer id;
 	private Caracteristique caracteristique;
 	private Materiel materiel;
-	private String codeValeur;
+	private String code;
 	private String valeurCaracteristique;
 
 	public Valeur() {
@@ -34,10 +34,10 @@ public class Valeur implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	public Valeur(Caracteristique caracteristique, Materiel materiel, String codeValeur, String valeurCaracteristique) {
+	public Valeur(Caracteristique caracteristique, Materiel materiel, String code, String valeurCaracteristique) {
 		this.caracteristique = caracteristique;
 		this.materiel = materiel;
-		this.codeValeur = codeValeur;
+		this.code = code;
 		this.valeurCaracteristique = valeurCaracteristique;
 	}
 
@@ -73,13 +73,13 @@ public class Valeur implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@Column(name = "CODE_VALEUR", length = 10)
-	public String getCodeValeur() {
-		return this.codeValeur;
+	@Column(name = "CODE", length = 10)
+	public String getCode() {
+		return this.code;
 	}
 
-	public void setCodeValeur(String codeValeur) {
-		this.codeValeur = codeValeur;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	@Column(name = "VALEUR_CARACTERISTIQUE", length = 25)

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -36,10 +36,11 @@ public class Entree implements java.io.Serializable {
 	public Entree() {
 	}
 
-	public Entree(Materiel materiel, Personne personne, SourceFinancement sourceFinancement) {
+	public Entree(Materiel materiel, Personne personne, SourceFinancement sourceFinancement, Date dateEnregistrement) {
 		this.materiel = materiel;
 		this.personne = personne;
 		this.sourceFinancement = sourceFinancement;
+		this.dateEnregistrement = dateEnregistrement;
 	}
 
 	public Entree(Fournisseur fournisseur, Materiel materiel, Personne personne, SourceFinancement sourceFinancement,
@@ -126,7 +127,7 @@ public class Entree implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREGISTREMENT", length = 19)
+	@Column(name = "DATE_ENREGISTREMENT", nullable = false, length = 19)
 	public Date getDateEnregistrement() {
 		return this.dateEnregistrement;
 	}

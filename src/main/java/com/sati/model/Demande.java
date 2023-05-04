@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -44,10 +44,11 @@ public class Demande implements java.io.Serializable {
 	public Demande() {
 	}
 
-	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel) {
+	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel, Date dateDemande) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiel = materiel;
+		this.dateDemande = dateDemande;
 	}
 
 	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie, String codeDemande,
@@ -148,7 +149,7 @@ public class Demande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_DEMANDE", length = 19)
+	@Column(name = "DATE_DEMANDE", nullable = false, length = 19)
 	public Date getDateDemande() {
 		return this.dateDemande;
 	}

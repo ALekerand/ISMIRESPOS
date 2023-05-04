@@ -76,6 +76,7 @@ public class MaterielController {
 		return new String(prefix+(nbEnregistrement+1));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void chargerListeCaracteristiqueValeur() {
 		 for (Caracteristique caracteristique : (List<Caracteristique>)service.getObjects("Caracteristique")){
 			 CaracteristiqueValeur  caracteristiqueValeur = new CaracteristiqueValeur();
@@ -99,7 +100,7 @@ public class MaterielController {
 		for (CaracteristiqueValeur caracteristiqueValeur : listCaracteristiqueValeur) {
 			if(caracteristiqueValeur.getValeurCaracteristique()!="") {
 				Valeur valeur = new Valeur();
-				valeur.setCodeValeur(genererCodeValeur());
+				valeur.setCode(genererCodeValeur());
 				valeur.setValeurCaracteristique(caracteristiqueValeur.getValeurCaracteristique());
 				valeur.setCaracteristique(caracteristiqueValeur.getCaracteristique());
 				valeur.setMateriel(materiel);

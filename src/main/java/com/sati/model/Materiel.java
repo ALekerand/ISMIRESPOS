@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -33,6 +34,7 @@ public class Materiel implements java.io.Serializable {
 	private Integer stockActuel;
 	private Integer stockAlerte;
 	private Set<Valeur> valeurs = new HashSet<Valeur>(0);
+	private Mobilierbureau mobilierbureau;
 	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
 	private Set<Demande> demandes = new HashSet<Demande>(0);
 	private Set<Entree> entrees = new HashSet<Entree>(0);
@@ -50,8 +52,8 @@ public class Materiel implements java.io.Serializable {
 
 	public Materiel(Famille famille, Magasin magasin, Nature nature, String codeMateriel, String nomMateriel,
 			String descriptionMateriel, Integer stockActuel, Integer stockAlerte, Set<Valeur> valeurs,
-			Set<LigneCommande> ligneCommandes, Set<Demande> demandes, Set<Entree> entrees, Set<Parcours> parcourses,
-			Set<Diagnostique> diagnostiques) {
+			Mobilierbureau mobilierbureau, Set<LigneCommande> ligneCommandes, Set<Demande> demandes,
+			Set<Entree> entrees, Set<Parcours> parcourses, Set<Diagnostique> diagnostiques) {
 		this.famille = famille;
 		this.magasin = magasin;
 		this.nature = nature;
@@ -61,6 +63,7 @@ public class Materiel implements java.io.Serializable {
 		this.stockActuel = stockActuel;
 		this.stockAlerte = stockAlerte;
 		this.valeurs = valeurs;
+		this.mobilierbureau = mobilierbureau;
 		this.ligneCommandes = ligneCommandes;
 		this.demandes = demandes;
 		this.entrees = entrees;
@@ -162,6 +165,15 @@ public class Materiel implements java.io.Serializable {
 
 	public void setValeurs(Set<Valeur> valeurs) {
 		this.valeurs = valeurs;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "materiel")
+	public Mobilierbureau getMobilierbureau() {
+		return this.mobilierbureau;
+	}
+
+	public void setMobilierbureau(Mobilierbureau mobilierbureau) {
+		this.mobilierbureau = mobilierbureau;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiel")

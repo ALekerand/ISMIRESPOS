@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 25 avr. 2023, 20:40:34 by Hibernate Tools 4.3.6.Final
+// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,25 +32,26 @@ public class Boncommande implements java.io.Serializable {
 	private String codeBonCommande;
 	private Date dateBonCommande;
 	private String commentaireBonCommande;
-	private Set<Bonlivraison> bonlivraisons = new HashSet<Bonlivraison>(0);
 	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
+	private Set<Bonlivraison> bonlivraisons = new HashSet<Bonlivraison>(0);
 
 	public Boncommande() {
 	}
 
-	public Boncommande(Personne personne) {
+	public Boncommande(Personne personne, Date dateBonCommande) {
 		this.personne = personne;
+		this.dateBonCommande = dateBonCommande;
 	}
 
 	public Boncommande(Bonlivraison bonlivraison, Personne personne, String codeBonCommande, Date dateBonCommande,
-			String commentaireBonCommande, Set<Bonlivraison> bonlivraisons, Set<LigneCommande> ligneCommandes) {
+			String commentaireBonCommande, Set<LigneCommande> ligneCommandes, Set<Bonlivraison> bonlivraisons) {
 		this.bonlivraison = bonlivraison;
 		this.personne = personne;
 		this.codeBonCommande = codeBonCommande;
 		this.dateBonCommande = dateBonCommande;
 		this.commentaireBonCommande = commentaireBonCommande;
-		this.bonlivraisons = bonlivraisons;
 		this.ligneCommandes = ligneCommandes;
+		this.bonlivraisons = bonlivraisons;
 	}
 
 	@Id
@@ -95,7 +96,7 @@ public class Boncommande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_BON_COMMANDE", length = 19)
+	@Column(name = "DATE_BON_COMMANDE", nullable = false, length = 19)
 	public Date getDateBonCommande() {
 		return this.dateBonCommande;
 	}
@@ -114,21 +115,21 @@ public class Boncommande implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boncommande")
-	public Set<Bonlivraison> getBonlivraisons() {
-		return this.bonlivraisons;
-	}
-
-	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
-		this.bonlivraisons = bonlivraisons;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boncommande")
 	public Set<LigneCommande> getLigneCommandes() {
 		return this.ligneCommandes;
 	}
 
 	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
 		this.ligneCommandes = ligneCommandes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "boncommande")
+	public Set<Bonlivraison> getBonlivraisons() {
+		return this.bonlivraisons;
+	}
+
+	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
+		this.bonlivraisons = bonlivraisons;
 	}
 
 }
