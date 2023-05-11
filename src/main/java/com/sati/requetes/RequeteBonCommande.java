@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sati.model.Boncommande;
 import com.sati.model.LigneCommande;
 
 
@@ -30,6 +31,11 @@ public class RequeteBonCommande {
 	return list;
 	}
 
+	public List listBonCommande() {
+		String query = "SELECT * FROM `boncommande` WHERE ID_BON_LIVRAISON IS NULL";
+		List list = getSessionFactory().getCurrentSession().createSQLQuery(query).addEntity(Boncommande.class).list();
+		return list;
+	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

@@ -12,29 +12,67 @@
 	<ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
 			<div style="font-size: 15px ;  padding-left: 20px; padding-right: 20px">
-				<h:form id="form">
+				<h:form id="form" >
 				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
 				
-		<fieldset>
- 	<legend>Enregistrement du bon de livraison</legend>
+				<fieldset>
+ 			<legend>Enregistrement du bon de livraison</legend>
  			
-<h:panelGrid columns="6" cellpadding="10">
-	<p:outputLabel  value="Code:"></p:outputLabel>
-	<p:inputText  value="#{bonLivraisonController.bonlivraison.codeBonLivraison}"  ></p:inputText>	
+				
+<table >
+	<tr >
+		<td style="width:50%">
+			
+					
+		<div style="font-size: 15px ; padding-top: 15px; padding-left: 35px; padding-right: 35px">
+<p:dataTable id="table"  var="var" value="#{bonLivraisonController.listeBonCommande}" selectionMode="single" selection="#{bonLivraisonController.selectedObjectBC}" rowKey="#{var.idBonCommande}">
+ <f:facet name="header">Liste des bons de livraison</f:facet>
+ <p:ajax event="rowSelect" process="@this"  update="form" listener="#{bonLivraisonController.selectionnerLigne}"></p:ajax>
 
-<p:outputLabel  value="Date livraison:"></p:outputLabel>
-	<p:datePicker  value="#{bonLivraisonController.dateLivraison}" ></p:datePicker>	
+  
+ 	
+ 		<p:column headerText="Demandeur" >
+        <h:outputText value="#{var.personne.nomPersonne}"/>
+        </p:column>
+        
+   		<p:column headerText="Code bon Commande" >
+        <h:outputText value="#{var.codeBonCommande}"/>
+        </p:column>
+
+        </p:dataTable>
+				</div>
+			
+		</td>
+			
+		<td>
+		<h:form enctype="multipart/form-data">
+			<h:panelGrid columns="3" cellpadding="5">
+			<p:outputLabel  value="Fichier:"></p:outputLabel>
+					<p:fileUpload id="fichier" value="#{bonLivraisonController.fichier}" mode="simple" skinSimple="true"> </p:fileUpload>
+					 <p:commandButton value="Valider" ajax="false"
+                                            actionListener="#{bonLivraisonController.upload}"  />
+            
+               </h:panelGrid>
+                </h:form>
+	<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel  value="Code:" ></p:outputLabel>
+						<p:inputText  value="#{bonLivraisonController.bonlivraison.codeBonLivraison}"  ></p:inputText>	
+
+					<p:outputLabel  value="Date livraison:"></p:outputLabel>
+						<p:datePicker  value="#{bonLivraisonController.dateLivraison}" ></p:datePicker>	
 	
-<p:outputLabel  value="Fichier:"></p:outputLabel>
-<p:fileUpload value="#{bonLivraisonController.fichier}" mode="simple" skinSimple="true"/>
+				
 
-</h:panelGrid>
-</fieldset>
+			</h:panelGrid>
 		
+	   </td>
+	</tr>
+</table>	
+	</fieldset>
 	<br/>
 	<p:toolbar >
 		<f:facet name="left">
-			<p:commandButton value="Enregistrer" action="#{bonLivraisonController.enregistrer}" update="form" binding="#{bonLivraisonController.btnEnregistrer}"><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
+			<p:commandButton value="Enregistrer"  actionListener="#{bonLivraisonController.Enregistrer}" update="form" binding="#{bonLivraisonController.btnEnregistrer}"><p:confirm header="confirmation" message="confirmez-vous l'enregistrement?"></p:confirm></p:commandButton>
 			<p:commandButton value="Annuler"  action="#{bonLivraisonController.annuler}" update="form" binding="#{bonLivraisonController.btnAnnuler}"><p:confirm header="confirmation" message="voulez-vous annuler?"></p:confirm></p:commandButton>
 			<p:commandButton value="Modifier"  action="#{bonLivraisonController.modifier}" update="form" binding="#{bonLivraisonController.btnModifier}"><p:confirm header="confirmation" message="confirmez-vous la modification?"></p:confirm></p:commandButton>
 		</f:facet>
