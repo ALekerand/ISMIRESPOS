@@ -51,7 +51,7 @@ public class BonLivraisonController {
 	private List<Boncommande> listBonCommande = new ArrayList<Boncommande>();
 	private Boncommande selectedObjectBC = new Boncommande();
 	private int idBonCommande;
-	private String chemin = "C:\\fichierJSF";
+	private String chemin = "C:\\Users\\HP\\Desktop\\fichierJSF\\";
 	private UploadedFile fichier;
 	
 	
@@ -93,7 +93,7 @@ public class BonLivraisonController {
 			}else {
 				extValidate = "null";
 			}
-			if(extValidate.equals("pdf")) {
+			if(extValidate.equals("docx") || extValidate.equals("pdf") || extValidate.equals("pptx") || extValidate.equals("xlsx")) {
 				try {
 					transfererFile(getFichier().getFileName(), getFichier().getInputstream());
 				}catch (IOException ex) {

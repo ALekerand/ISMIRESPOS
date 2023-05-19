@@ -37,18 +37,6 @@
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
     <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
   </filter>
-  <init-param>
-  		<param-name>uploadDirectory</param-name>
-  		<param-value>/uploaded</param-value>
-  </init-param>
-   <init-param>
-  		<param-name>thresholSize</param-name>
-  		<param-value>/uploaded</param-value>
-  </init-param>
-  <init-param>
-  		<param-name>uploadDirectory</param-name>
-  		<param-value>C:\fichierJSF</param-value>
-  </init-param>
   <filter-mapping>
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
     <servlet-name>Faces Servlet</servlet-name>

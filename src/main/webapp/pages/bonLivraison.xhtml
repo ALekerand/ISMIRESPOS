@@ -12,15 +12,12 @@
 	<ui:composition template="/templates/template.xhtml">
 			<ui:define name="body">
 			<div style="font-size: 15px ;  padding-left: 20px; padding-right: 20px">
-				<h:form id="form" >
-				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
-				
+			<h:form id="form"  enctype="multipart/form-data">
 				<fieldset>
  			<legend>Enregistrement du bon de livraison</legend>
- 			
-				
-<table >
+ 			<table >
 	<tr >
+ 	
 		<td style="width:50%">
 			
 					
@@ -43,9 +40,10 @@
 				</div>
 			
 		</td>
-			
+	 			
+ 					
 		<td>
-		<h:form enctype="multipart/form-data">
+				
 			<h:panelGrid columns="3" cellpadding="5">
 			<p:outputLabel  value="Fichier:"></p:outputLabel>
 					<p:fileUpload id="fichier" value="#{bonLivraisonController.fichier}" mode="simple" skinSimple="true"> </p:fileUpload>
@@ -53,7 +51,8 @@
                                             actionListener="#{bonLivraisonController.upload}"  />
             
                </h:panelGrid>
-                </h:form>
+				<p:messages autoUpdate="true" closable="true" showDetail="false"/>
+				
 	<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel  value="Code:" ></p:outputLabel>
 						<p:inputText  value="#{bonLivraisonController.bonlivraison.codeBonLivraison}"  ></p:inputText>	
