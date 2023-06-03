@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
+// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -32,24 +32,29 @@ public class Sortie implements java.io.Serializable {
 	private String codeSortie;
 	private Date dateSortie;
 	private Date dateEnregSortie;
+	private Boolean materielRetour;
+	private Date dateRetourPrevue;
+	private Date dateRetourEffectif;
 	private Set<Demande> demandes = new HashSet<Demande>(0);
 
 	public Sortie() {
 	}
 
-	public Sortie(Demande demande, Personne personne, Date dateEnregSortie) {
+	public Sortie(Demande demande, Personne personne) {
 		this.demande = demande;
 		this.personne = personne;
-		this.dateEnregSortie = dateEnregSortie;
 	}
 
 	public Sortie(Demande demande, Personne personne, String codeSortie, Date dateSortie, Date dateEnregSortie,
-			Set<Demande> demandes) {
+			Boolean materielRetour, Date dateRetourPrevue, Date dateRetourEffectif, Set<Demande> demandes) {
 		this.demande = demande;
 		this.personne = personne;
 		this.codeSortie = codeSortie;
 		this.dateSortie = dateSortie;
 		this.dateEnregSortie = dateEnregSortie;
+		this.materielRetour = materielRetour;
+		this.dateRetourPrevue = dateRetourPrevue;
+		this.dateRetourEffectif = dateRetourEffectif;
 		this.demandes = demandes;
 	}
 
@@ -65,7 +70,7 @@ public class Sortie implements java.io.Serializable {
 		this.idSortie = idSortie;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_DEMANDE", nullable = false)
 	public Demande getDemande() {
 		return this.demande;
@@ -75,7 +80,7 @@ public class Sortie implements java.io.Serializable {
 		this.demande = demande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -105,13 +110,42 @@ public class Sortie implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREG_SORTIE", nullable = false, length = 19)
+	@Column(name = "DATE_ENREG_SORTIE", length = 19)
 	public Date getDateEnregSortie() {
 		return this.dateEnregSortie;
 	}
 
 	public void setDateEnregSortie(Date dateEnregSortie) {
 		this.dateEnregSortie = dateEnregSortie;
+	}
+
+	@Column(name = "MATERIEL_RETOUR")
+	public Boolean getMaterielRetour() {
+		return this.materielRetour;
+	}
+
+	public void setMaterielRetour(Boolean materielRetour) {
+		this.materielRetour = materielRetour;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_RETOUR_PREVUE", length = 10)
+	public Date getDateRetourPrevue() {
+		return this.dateRetourPrevue;
+	}
+
+	public void setDateRetourPrevue(Date dateRetourPrevue) {
+		this.dateRetourPrevue = dateRetourPrevue;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_RETOUR_EFFECTIF", length = 10)
+	public Date getDateRetourEffectif() {
+		return this.dateRetourEffectif;
+	}
+
+	public void setDateRetourEffectif(Date dateRetourEffectif) {
+		this.dateRetourEffectif = dateRetourEffectif;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sortie")

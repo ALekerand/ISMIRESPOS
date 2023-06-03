@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
+// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -44,11 +44,10 @@ public class Demande implements java.io.Serializable {
 	public Demande() {
 	}
 
-	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel, Date dateDemande) {
+	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel) {
 		this.entite = entite;
 		this.etatDemande = etatDemande;
 		this.materiel = materiel;
-		this.dateDemande = dateDemande;
 	}
 
 	public Demande(Entite entite, EtatDemande etatDemande, Materiel materiel, Sortie sortie, String codeDemande,
@@ -81,7 +80,7 @@ public class Demande implements java.io.Serializable {
 		this.idDemande = idDemande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Entite getEntite() {
 		return this.entite;
@@ -91,7 +90,7 @@ public class Demande implements java.io.Serializable {
 		this.entite = entite;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ETAT_DEMANDE", nullable = false)
 	public EtatDemande getEtatDemande() {
 		return this.etatDemande;
@@ -101,7 +100,7 @@ public class Demande implements java.io.Serializable {
 		this.etatDemande = etatDemande;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;
@@ -111,7 +110,7 @@ public class Demande implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SORTIE")
 	public Sortie getSortie() {
 		return this.sortie;
@@ -149,7 +148,7 @@ public class Demande implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_DEMANDE", nullable = false, length = 19)
+	@Column(name = "DATE_DEMANDE", length = 19)
 	public Date getDateDemande() {
 		return this.dateDemande;
 	}

@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
+// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,10 +31,9 @@ public class Materiel implements java.io.Serializable {
 	private String codeMateriel;
 	private String nomMateriel;
 	private String descriptionMateriel;
-	private Integer stockActuel;
-	private Integer stockAlerte;
 	private Set<Valeur> valeurs = new HashSet<Valeur>(0);
-	private Mobilierbureau mobilierbureau;
+	private Fongible fongible;
+	private NonFongible nonFongible;
 	private Set<LigneCommande> ligneCommandes = new HashSet<LigneCommande>(0);
 	private Set<Demande> demandes = new HashSet<Demande>(0);
 	private Set<Entree> entrees = new HashSet<Entree>(0);
@@ -51,19 +50,18 @@ public class Materiel implements java.io.Serializable {
 	}
 
 	public Materiel(Famille famille, Magasin magasin, Nature nature, String codeMateriel, String nomMateriel,
-			String descriptionMateriel, Integer stockActuel, Integer stockAlerte, Set<Valeur> valeurs,
-			Mobilierbureau mobilierbureau, Set<LigneCommande> ligneCommandes, Set<Demande> demandes,
-			Set<Entree> entrees, Set<Parcours> parcourses, Set<Diagnostique> diagnostiques) {
+			String descriptionMateriel, Set<Valeur> valeurs, Fongible fongible, NonFongible nonFongible,
+			Set<LigneCommande> ligneCommandes, Set<Demande> demandes, Set<Entree> entrees, Set<Parcours> parcourses,
+			Set<Diagnostique> diagnostiques) {
 		this.famille = famille;
 		this.magasin = magasin;
 		this.nature = nature;
 		this.codeMateriel = codeMateriel;
 		this.nomMateriel = nomMateriel;
 		this.descriptionMateriel = descriptionMateriel;
-		this.stockActuel = stockActuel;
-		this.stockAlerte = stockAlerte;
 		this.valeurs = valeurs;
-		this.mobilierbureau = mobilierbureau;
+		this.fongible = fongible;
+		this.nonFongible = nonFongible;
 		this.ligneCommandes = ligneCommandes;
 		this.demandes = demandes;
 		this.entrees = entrees;
@@ -83,7 +81,7 @@ public class Materiel implements java.io.Serializable {
 		this.idMateriel = idMateriel;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_FAMILLE", nullable = false)
 	public Famille getFamille() {
 		return this.famille;
@@ -93,7 +91,7 @@ public class Materiel implements java.io.Serializable {
 		this.famille = famille;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MAGASIN", nullable = false)
 	public Magasin getMagasin() {
 		return this.magasin;
@@ -103,7 +101,7 @@ public class Materiel implements java.io.Serializable {
 		this.magasin = magasin;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_NATURE", nullable = false)
 	public Nature getNature() {
 		return this.nature;
@@ -140,24 +138,6 @@ public class Materiel implements java.io.Serializable {
 		this.descriptionMateriel = descriptionMateriel;
 	}
 
-	@Column(name = "STOCK_ACTUEL")
-	public Integer getStockActuel() {
-		return this.stockActuel;
-	}
-
-	public void setStockActuel(Integer stockActuel) {
-		this.stockActuel = stockActuel;
-	}
-
-	@Column(name = "STOCK_ALERTE")
-	public Integer getStockAlerte() {
-		return this.stockAlerte;
-	}
-
-	public void setStockAlerte(Integer stockAlerte) {
-		this.stockAlerte = stockAlerte;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiel")
 	public Set<Valeur> getValeurs() {
 		return this.valeurs;
@@ -168,12 +148,21 @@ public class Materiel implements java.io.Serializable {
 	}
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "materiel")
-	public Mobilierbureau getMobilierbureau() {
-		return this.mobilierbureau;
+	public Fongible getFongible() {
+		return this.fongible;
 	}
 
-	public void setMobilierbureau(Mobilierbureau mobilierbureau) {
-		this.mobilierbureau = mobilierbureau;
+	public void setFongible(Fongible fongible) {
+		this.fongible = fongible;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "materiel")
+	public NonFongible getNonFongible() {
+		return this.nonFongible;
+	}
+
+	public void setNonFongible(NonFongible nonFongible) {
+		this.nonFongible = nonFongible;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiel")

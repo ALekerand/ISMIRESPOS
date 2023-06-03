@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 4 mai 2023, 14:22:06 by Hibernate Tools 4.3.6.Final
+// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -36,11 +36,10 @@ public class Entree implements java.io.Serializable {
 	public Entree() {
 	}
 
-	public Entree(Materiel materiel, Personne personne, SourceFinancement sourceFinancement, Date dateEnregistrement) {
+	public Entree(Materiel materiel, Personne personne, SourceFinancement sourceFinancement) {
 		this.materiel = materiel;
 		this.personne = personne;
 		this.sourceFinancement = sourceFinancement;
-		this.dateEnregistrement = dateEnregistrement;
 	}
 
 	public Entree(Fournisseur fournisseur, Materiel materiel, Personne personne, SourceFinancement sourceFinancement,
@@ -67,7 +66,7 @@ public class Entree implements java.io.Serializable {
 		this.idEntree = idEntree;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_FOURNISSEUR")
 	public Fournisseur getFournisseur() {
 		return this.fournisseur;
@@ -77,7 +76,7 @@ public class Entree implements java.io.Serializable {
 		this.fournisseur = fournisseur;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MATERIEL", nullable = false)
 	public Materiel getMateriel() {
 		return this.materiel;
@@ -87,7 +86,7 @@ public class Entree implements java.io.Serializable {
 		this.materiel = materiel;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ENTITE", nullable = false)
 	public Personne getPersonne() {
 		return this.personne;
@@ -97,7 +96,7 @@ public class Entree implements java.io.Serializable {
 		this.personne = personne;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_SOURCE", nullable = false)
 	public SourceFinancement getSourceFinancement() {
 		return this.sourceFinancement;
@@ -127,7 +126,7 @@ public class Entree implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_ENREGISTREMENT", nullable = false, length = 19)
+	@Column(name = "DATE_ENREGISTREMENT", length = 19)
 	public Date getDateEnregistrement() {
 		return this.dateEnregistrement;
 	}
