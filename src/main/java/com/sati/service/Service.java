@@ -19,7 +19,6 @@ public class Service implements Iservice {
 			getDAO().addObject(object);
 		}
 		
-		
 		@Transactional(readOnly = false)
 		@Override
 		public void updateObject(Object object) {
@@ -51,8 +50,6 @@ public class Service implements Iservice {
 			// TODO Auto-generated method stub
 			return null;
 		}
-
-		
 		
 		public IDAO getDAO() {
 			return DAO;
@@ -61,7 +58,6 @@ public class Service implements Iservice {
 		public void setDAO(IDAO dAO) {
 			DAO = dAO;
 		}
-
 
 		@Override
 		public List getObjects(String objet) {

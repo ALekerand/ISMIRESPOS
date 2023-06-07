@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sati.model.Entree;
+import com.sati.model.Fongible;
 import com.sati.model.Fournisseur;
 import com.sati.model.Materiel;
 import com.sati.model.SourceFinancement;
@@ -30,6 +31,7 @@ public class EntreeController {
 	RequeteUtilisateur requeteUtilisateur;
 	private Entree entree = new Entree();
 	private Materiel  materiel ;//= new Materiel();
+	private Fongible fongible = new Fongible();
 	private UserAuthentication userAuthentication = new UserAuthentication();
 	private List<Fournisseur> listFournisseur = new ArrayList<Fournisseur>();
 	private int idFournisseur;
@@ -82,8 +84,8 @@ public class EntreeController {
 		
 		this.service.addObject(this.entree);
 		
-		//MAJ table materiel au niveau du stock
-		this.materiel.setStockActuel(this.materiel.getStockActuel()+ this.entree.getQteEntree());
+		
+		this.fongible.setStockActuel(this.fongible.getStockActuel()+ this.entree.getQteEntree());
 		service.updateObject(materiel);
 		
 	
@@ -230,6 +232,14 @@ public class EntreeController {
 
 	public void setListEntree(List<Entree> listEntree) {
 		this.listEntree = listEntree;
+	}
+
+	public Fongible getFongible() {
+		return fongible;
+	}
+
+	public void setFongible(Fongible fongible) {
+		this.fongible = fongible;
 	}
 
 	

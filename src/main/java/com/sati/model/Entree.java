@@ -134,7 +134,6 @@ public class Entree implements java.io.Serializable {
 	public void setDateEnregistrement(Date dateEnregistrement) {
 		this.dateEnregistrement = dateEnregistrement;
 	}
-
 	@Column(name = "QTE_ENTREE")
 	public Integer getQteEntree() {
 		return this.qteEntree;

@@ -86,7 +86,6 @@ public class Valeur implements java.io.Serializable {
 	public String getValeurCaracteristique() {
 		return this.valeurCaracteristique;
 	}
-
 	public void setValeurCaracteristique(String valeurCaracteristique) {
 		this.valeurCaracteristique = valeurCaracteristique;
 	}

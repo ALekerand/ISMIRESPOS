@@ -126,7 +126,6 @@ public class Boncommande implements java.io.Serializable {
 	public Set<Bonlivraison> getBonlivraisons() {
 		return this.bonlivraisons;
 	}
-
 	public void setBonlivraisons(Set<Bonlivraison> bonlivraisons) {
 		this.bonlivraisons = bonlivraisons;
 	}

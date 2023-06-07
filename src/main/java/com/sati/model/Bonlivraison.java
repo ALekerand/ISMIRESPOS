@@ -123,7 +123,6 @@ public class Bonlivraison implements java.io.Serializable {
 	public void setFichier(String fichier) {
 		this.fichier = fichier;
 	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bonlivraison")
 	public Set<Boncommande> getBoncommandes() {
 		return this.boncommandes;

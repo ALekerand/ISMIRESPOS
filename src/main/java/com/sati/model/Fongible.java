@@ -140,7 +140,6 @@ public class Fongible implements java.io.Serializable {
 	public Integer getStockAlerte() {
 		return this.stockAlerte;
 	}
-
 	public void setStockAlerte(Integer stockAlerte) {
 		this.stockAlerte = stockAlerte;
 	}

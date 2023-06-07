@@ -41,7 +41,7 @@ public class Fournisseur implements java.io.Serializable {
 		this.telephoneFournisseur = telephoneFournisseur;
 		this.entrees = entrees;
 	}
-
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@GenericGenerator(name="lekerand" , strategy="increment")
@@ -49,7 +49,6 @@ public class Fournisseur implements java.io.Serializable {
 	public Integer getIdFournisseur() {
 		return this.idFournisseur;
 	}
-
 	public void setIdFournisseur(Integer idFournisseur) {
 		this.idFournisseur = idFournisseur;
 	}

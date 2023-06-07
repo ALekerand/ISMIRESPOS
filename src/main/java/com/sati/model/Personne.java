@@ -193,7 +193,6 @@ public class Personne implements java.io.Serializable {
 	public Set<Boncommande> getBoncommandes() {
 		return this.boncommandes;
 	}
-
 	public void setBoncommandes(Set<Boncommande> boncommandes) {
 		this.boncommandes = boncommandes;
 	}

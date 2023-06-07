@@ -20,7 +20,7 @@
 <h:panelGrid columns="6" cellpadding="10">
 
 	<p:outputLabel for="input_code" value="Code:"></p:outputLabel>
-	<p:inputText id="input_code"   required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+	<p:inputText id="input_code" value="#{magasinController.magasin.codeMagasin}"  required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 
 	<p:outputLabel for="input_lib" value="Nom:"></p:outputLabel>
 	<p:inputText id="input_lib" value="#{magasinController.magasin.nomMagasin}" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>

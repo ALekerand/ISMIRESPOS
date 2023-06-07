@@ -102,7 +102,6 @@ public class Diagnostique implements java.io.Serializable {
 	public String getCommentaire() {
 		return this.commentaire;
 	}
-
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}

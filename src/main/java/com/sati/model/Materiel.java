@@ -205,7 +205,6 @@ public class Materiel implements java.io.Serializable {
 	public Set<Diagnostique> getDiagnostiques() {
 		return this.diagnostiques;
 	}
-
 	public void setDiagnostiques(Set<Diagnostique> diagnostiques) {
 		this.diagnostiques = diagnostiques;
 	}

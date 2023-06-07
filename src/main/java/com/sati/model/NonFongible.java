@@ -155,7 +155,6 @@ public class NonFongible implements java.io.Serializable {
 	public Date getDateRetrait() {
 		return this.dateRetrait;
 	}
-
 	public void setDateRetrait(Date dateRetrait) {
 		this.dateRetrait = dateRetrait;
 	}

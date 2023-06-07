@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.sati.dto.CaracteristiqueValeur;
 import com.sati.model.Caracteristique;
 import com.sati.model.Famille;
+import com.sati.model.Fongible;
 import com.sati.model.Magasin;
 import com.sati.model.Materiel;
 import com.sati.model.Nature;
@@ -28,12 +29,15 @@ public class MaterielController {
 	@Autowired
 	Iservice service;
 	private Materiel materiel = new Materiel();
+	private Fongible fongible= new Fongible();
 	@SuppressWarnings("unused")
 	private List<Materiel> listTable = new ArrayList<Materiel>();
 	private Materiel selectedObject = new Materiel();
 	private int idFamille;
 	private int idNature;
 	private int idMagasin;
+	private int stockActuel;
+	private int stockAlerte;
 	private List<Famille> listFamille = new ArrayList<Famille>();
 	private List<Nature> listNature = new ArrayList<Nature>();
 	private List<Magasin> listMagasin = new ArrayList<Magasin>();
@@ -95,6 +99,16 @@ public class MaterielController {
 		this.materiel.setNature(natureProduit);
 		this.materiel.setMagasin(magasin);
 		this.service.addObject(this.materiel);
+		this.fongible.setIdFamille(idFamille);
+		this.fongible.setIdNature(idNature);
+		this.fongible.setIdMagasin(idMagasin);
+		this.fongible.setStockActuel(stockActuel);
+		this.fongible.setStockAlerte(stockAlerte);
+		this.fongible.setNomMateriel(materiel.getNomMateriel());
+		this.fongible.setCodeMateriel(materiel.getCodeMateriel());
+		this.fongible.setDescriptionMateriel(materiel.getDescriptionMateriel());
+		this.fongible.setMateriel(materiel);
+		this.service.addObject(this.fongible);
 		
 		//Enregistrement dans la table Valeur 
 		for (CaracteristiqueValeur caracteristiqueValeur : listCaracteristiqueValeur) {
@@ -132,8 +146,6 @@ public class MaterielController {
 		this.materiel.setNature(null);
 		this.materiel.setMagasin(null);
 		this.materiel.setNomMateriel(null);
-		this.materiel.setStockActuel(null);
-		this.materiel.setStockAlerte(null);
 		this.materiel.setMagasin(null);
 		this.setIdFamille(0);
 		this.setIdMagasin(0);
@@ -283,6 +295,31 @@ public class MaterielController {
 	public void setListCaracteristiqueValeur(List<CaracteristiqueValeur> listCaracteristiqueValeur) {
 		this.listCaracteristiqueValeur = listCaracteristiqueValeur;
 	}
+
+	public Fongible getFongible() {
+		return fongible;
+	}
+
+	public void setFongible(Fongible fongible) {
+		this.fongible = fongible;
+	}
+
+	public int getStockActuel() {
+		return stockActuel;
+	}
+
+	public void setStockActuel(int stockActuel) {
+		this.stockActuel = stockActuel;
+	}
+
+	public int getStockAlerte() {
+		return stockAlerte;
+	}
+
+	public void setStockAlerte(int stockAlerte) {
+		this.stockAlerte = stockAlerte;
+	}
+
 	
 	
 }

@@ -96,7 +96,6 @@ public class Parcours implements java.io.Serializable {
 	public void setDatePcours(Date datePcours) {
 		this.datePcours = datePcours;
 	}
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE_ENREG_PARCOURS", length = 19)
 	public Date getDateEnregParcours() {

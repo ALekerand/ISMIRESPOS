@@ -76,7 +76,6 @@ public class Caracteristique implements java.io.Serializable {
 	public void setDescriptionCaracteristique(String descriptionCaracteristique) {
 		this.descriptionCaracteristique = descriptionCaracteristique;
 	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "caracteristique")
 	public Set<Valeur> getValeurs() {
 		return this.valeurs;

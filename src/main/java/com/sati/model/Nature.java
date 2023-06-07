@@ -75,7 +75,6 @@ public class Nature implements java.io.Serializable {
 	public void setDescriptionNature(String descriptionNature) {
 		this.descriptionNature = descriptionNature;
 	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nature")
 	public Set<Materiel> getMateriels() {
 		return this.materiels;

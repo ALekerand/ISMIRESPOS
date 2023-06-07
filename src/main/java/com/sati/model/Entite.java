@@ -104,7 +104,6 @@ public class Entite implements java.io.Serializable {
 	public Set<Demande> getDemandes() {
 		return this.demandes;
 	}
-
 	public void setDemandes(Set<Demande> demandes) {
 		this.demandes = demandes;
 	}

@@ -80,7 +80,6 @@ public class Famille implements java.io.Serializable {
 	public Set<Materiel> getMateriels() {
 		return this.materiels;
 	}
-
 	public void setMateriels(Set<Materiel> materiels) {
 		this.materiels = materiels;
 	}

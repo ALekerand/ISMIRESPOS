@@ -64,7 +64,6 @@ public class Etat implements java.io.Serializable {
 	public void setLibEtat(String libEtat) {
 		this.libEtat = libEtat;
 	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "etat")
 	public Set<Diagnostique> getDiagnostiques() {
 		return this.diagnostiques;

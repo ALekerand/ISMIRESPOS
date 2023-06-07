@@ -190,7 +190,6 @@ public class Demande implements java.io.Serializable {
 	public Date getDateEtatReception() {
 		return this.dateEtatReception;
 	}
-
 	public void setDateEtatReception(Date dateEtatReception) {
 		this.dateEtatReception = dateEtatReception;
 	}

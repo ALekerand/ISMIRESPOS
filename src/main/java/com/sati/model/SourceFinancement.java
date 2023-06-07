@@ -80,7 +80,6 @@ public class SourceFinancement implements java.io.Serializable {
 	public Set<Entree> getEntrees() {
 		return this.entrees;
 	}
-
 	public void setEntrees(Set<Entree> entrees) {
 		this.entrees = entrees;
 	}

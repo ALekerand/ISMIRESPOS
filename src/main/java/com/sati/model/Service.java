@@ -110,7 +110,6 @@ public class Service implements java.io.Serializable {
 	public Set<Parcours> getParcourses() {
 		return this.parcourses;
 	}
-
 	public void setParcourses(Set<Parcours> parcourses) {
 		this.parcourses = parcourses;
 	}

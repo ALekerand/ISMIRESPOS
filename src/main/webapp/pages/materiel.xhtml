@@ -42,10 +42,10 @@
 					</p:selectOneMenu>
 					
 					<p:outputLabel for="input_stockArl" value="Stock arlerte:"></p:outputLabel>
-					<p:inputText id="input_stockArl" value="#{materielController.materiel.stockAlerte}" style="width:60px" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+					<p:inputText id="input_stockArl" value="#{materielController.stockAlerte}" style="width:60px" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 					
 					<p:outputLabel for="input_stockInitial" value="Stock initial:"></p:outputLabel>
-					<p:inputText id="input_stockInitial" value="#{materielController.materiel.stockActuel}" style="width:60px" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
+					<p:inputText id="input_stockInitial" value="#{materielController.stockActuel}" style="width:60px" required="true" requiredMessage="Veuillez resseigner ce champ SVP"></p:inputText>	
 			
 					<p:outputLabel/>
 					<p:outputLabel/>
@@ -111,13 +111,7 @@
         <h:outputText value="#{var.descriptionMateriel}"/>
         </p:column>
         
-        <p:column headerText="Stock d'arlete">
-        <h:outputText value="#{var.stockAlerte}"/>
-        </p:column>
-        
-        <p:column headerText="Stock actuel">
-        <h:outputText value="#{var.stockActuel}"/>
-        </p:column>
+      
 </p:dataTable>
 							
 	   <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

@@ -69,7 +69,6 @@ public class Fonction implements java.io.Serializable {
 	public Set<Personne> getPersonnes() {
 		return this.personnes;
 	}
-
 	public void setPersonnes(Set<Personne> personnes) {
 		this.personnes = personnes;
 	}

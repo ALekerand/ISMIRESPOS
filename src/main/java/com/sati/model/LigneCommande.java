@@ -87,7 +87,6 @@ public class LigneCommande implements java.io.Serializable {
 	public Integer getQteLigneCommande() {
 		return this.qteLigneCommande;
 	}
-
 	public void setQteLigneCommande(Integer qteLigneCommande) {
 		this.qteLigneCommande = qteLigneCommande;
 	}

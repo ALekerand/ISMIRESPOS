@@ -110,7 +110,6 @@ public class UserAuthentication implements java.io.Serializable {
 	public Set<UserAuthorization> getUserAuthorizations() {
 		return this.userAuthorizations;
 	}
-
 	public void setUserAuthorizations(Set<UserAuthorization> userAuthorizations) {
 		this.userAuthorizations = userAuthorizations;
 	}
