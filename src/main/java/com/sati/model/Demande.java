@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
+// Generated 22 juin 2023, 16:17:05 by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -190,6 +190,7 @@ public class Demande implements java.io.Serializable {
 	public Date getDateEtatReception() {
 		return this.dateEtatReception;
 	}
+
 	public void setDateEtatReception(Date dateEtatReception) {
 		this.dateEtatReception = dateEtatReception;
 	}

@@ -85,7 +85,7 @@ public class EntreeController {
 		this.service.addObject(this.entree);
 		
 		
-		this.fongible.setStockActuel(this.fongible.getStockActuel()+ this.entree.getQteEntree());
+		fongible.setStockActuel(this.fongible.getStockActuel()+ this.entree.getQteEntree());
 		service.updateObject(materiel);
 		
 	

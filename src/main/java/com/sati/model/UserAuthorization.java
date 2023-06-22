@@ -1,5 +1,5 @@
 package com.sati.model;
-// Generated 30 mai 2023, 18:52:12 by Hibernate Tools 4.3.6.Final
+// Generated 22 juin 2023, 16:17:05 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,6 +58,7 @@ public class UserAuthorization implements java.io.Serializable {
 	public String getRole() {
 		return this.role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
